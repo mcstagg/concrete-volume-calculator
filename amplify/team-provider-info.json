@@ -1,0 +1,15 @@
+{
+  "local": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-cvcorderapp-local-162703-authRole",
+      "UnauthRoleArn": "arn:aws:iam::851295084976:role/amplify-cvcorderapp-local-162703-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::851295084976:role/amplify-cvcorderapp-local-162703-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-cvcorderapp-local-162703-deployment",
+      "UnauthRoleName": "amplify-cvcorderapp-local-162703-unauthRole",
+      "StackName": "amplify-cvcorderapp-local-162703",
+      "StackId": "arn:aws:cloudformation:us-east-2:851295084976:stack/amplify-cvcorderapp-local-162703/a99618d0-a931-11eb-a558-06d1677f4214",
+      "AmplifyAppId": "d10ujsmgjmzmor"
+    }
+  }
+}

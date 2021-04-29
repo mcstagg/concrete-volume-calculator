@@ -1,0 +1,35 @@
+{
+    "paths": [
+        {
+            "name": "/cvcorder",
+            "lambdaFunction": "cvcorderfunction",
+            "privacy": {
+                "open": true
+            },
+            "policyResourceName": "/cvcorder"
+        }
+    ],
+    "resourceName": "cvcorderapi",
+    "apiName": "cvcorderapi",
+    "functionArns": [
+        {
+            "lambdaFunction": "cvcorderfunction"
+        }
+    ],
+    "privacy": {
+        "auth": 0,
+        "unauth": 0,
+        "authRoleName": "amplify-cvcorderapp-local-162703-authRole",
+        "unAuthRoleName": "amplify-cvcorderapp-local-162703-unauthRole"
+    },
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "cvcorderfunction",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        }
+    ]
+}
