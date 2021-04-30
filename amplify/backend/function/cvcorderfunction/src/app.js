@@ -6,9 +6,6 @@ or in the "license" file accompanying this file. This file is distributed on an 
 See the License for the specific language governing permissions and limitations under the License.
 */
 
-
-
-
 var express = require('express')
 var bodyParser = require('body-parser')
 var awsServerlessExpressMiddleware = require('aws-serverless-express/middleware')
@@ -30,7 +27,7 @@ app.use(function(req, res, next) {
  * Example get method *
  **********************/
 
- app.get('/coins', function(req, res) {
+ app.get('/cvcorder', function(req, res) {
   const coins = [
     { name: 'Bitcoin', symbol: 'BTC', price_usd: "10000" },
     { name: 'Ethereum', symbol: 'ETH', price_usd: "400" },
@@ -41,7 +38,7 @@ app.use(function(req, res, next) {
   })
 })
 
-app.get('/item', function(req, res) {
+app.get('/items', function(req, res) {
   // Add your code here
   res.json({success: 'get call succeed!', url: req.url});
 });
