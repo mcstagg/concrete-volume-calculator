@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { API } from 'aws-amplify';
 import './App.css';
 import truck from './truck.png';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Row, Col, Container, Form } from 'react-bootstrap';
 
 const App = () => {
   // Create coins variable and set to empty array
@@ -27,47 +29,69 @@ const App = () => {
   return (
 
     <>
-      <div>
-        <img src={truck} alt="truck"/>
-        <h1><u>Concrete Volume Calculator</u></h1>
-      </div>
+      <Container>
+      <Row>
+        <Col><img src={truck} alt="truck" /></Col>
+        <Col><h1 className="text-center"><u>Concrete Volume Calculator</u></h1></Col>
+      </Row>
       
       <div>
         <form action="">
-          <h3><i>Enter Your Details Below:</i></h3>
-          <input type="radio" id="wall" name="options" value="wall" />
-          <label htmlFor="wall">Wall</label><br />
-          <input type="radio" id="footing" name="options" value="footing" />
-          <label htmlFor="footing">Footing</label><br />
-          <input type="radio" id="patio" name="options" value="patio" />
-          <label htmlFor="patio">Patio</label><br />
-          <input type="radio" id="sidewalk" name="options" value="sidewalk" />
-          <label htmlFor="sidewalk">Sidewalk</label>
+          <h4 className="text-center"><i>Enter Your Details Below:</i></h4>
+          <Row>
+          <Col><input type="radio" id="wall" name="options" value="wall" />
+          <label htmlFor="wall" className="pl-2"> Wall</label></Col>
+          <Col><input type="radio" id="footing" name="options" value="footing" />
+          <label htmlFor="footing" className="pl-2">Footing</label></Col>
+          <Col><input type="radio" id="patio" name="options" value="patio" />
+          <label htmlFor="patio" className="pl-2">Patio</label></Col>
+          <Col><input type="radio" id="sidewalk" name="options" value="sidewalk" />
+          <label htmlFor="sidewalk" className="pl-2">Sidewalk</label></Col>
+          </Row>
         </form>
       </div>
 
       <div>
         <form>
-          <h3>New Dimension:</h3>
-          <label htmlFor="width">Width </label>
-          <input type="text" id="width" name="widths" value="width" /><br />
-          <label htmlFor="height">Height </label>
-          <input type="text" id="height" name="heights" value="height" /><br />
-          <label htmlFor="length">Length </label>
-          <input type="text" id="length" name="lengths" value="length" /><br />
+          <h4>New Dimension:</h4>
+          <div className="text-center">
+          <Row>
+            <Col>
+            <Form.Group>
+              <Form.Label htmlFor="width" className="pr-2">Width</Form.Label>
+              <Form.Control type="text" id="width" placeholder="width" value="" /><br />
+            </Form.Group>
+            </Col>
+            <h5 className="pt-5">in.</h5>
+            <Col>
+            <Form.Group>
+              <Form.Label htmlFor="height" className="pr-2">Height </Form.Label>
+              <Form.Control type="text" id="height" placeholder="Height" value="" /><br />
+            </Form.Group>
+            </ Col>
+            <h5 className="pt-5">ft.</h5>
+            <Col>
+            <Form.Group>
+              <Form.Label htmlFor="length" className="pr-2">Length </Form.Label>
+              <Form.Control type="text" id="length" placeholder="length" value="" /><br />
+            </Form.Group>
+            </ Col>
+            <h5 className="pt-5">ft.</h5>
+          </Row>
+          </div>
           <input type="submit" value="Add New Dimension" />
         </form>
       </div>
 
       <div>
-        <h3>Entries:</h3>
+        <h4>Entries:</h4>
         <p>8in Wide by 10ft high by 100ft long = 24.7 Cubic Yards</p>
-        <h4>Total Cubic Yards: 24.7</h4>
+        <p><b>Total Cubic Yards: 24.7</b></p>
       </div>
 
       <div>
         <form>
-          <h3>Order Form:</h3>
+          <h4>Order Form:</h4>
           <label htmlFor="date">Date: </label>
           <input type="text" id="date" name="dates" value="date" /><br />
           <label htmlFor="customer">Customer: </label>
@@ -105,6 +129,7 @@ const App = () => {
           ))
         }
       </div>
+      </Container>
     </>
   );
 }
