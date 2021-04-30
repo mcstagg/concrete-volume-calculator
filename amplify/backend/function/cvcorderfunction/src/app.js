@@ -29,6 +29,7 @@ app.use(function(req, res, next) {
 
  app.get('/cvcorder', function(req, res) {
   const orders = [
+    { name: 'Order Status:', symbol: 'Confirmed' },
     { name: 'Date:', symbol: '04/27/2021' },
     { name: 'Customer:', symbol: 'Stagg Builders' },
     { name: 'Type of Pour:', symbol: 'Wall' },
