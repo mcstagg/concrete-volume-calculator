@@ -1,45 +1,44 @@
-// Import useState and useEffect hooks from React
-import React, { useState, useEffect } from 'react'
-
-// Import the API category from AWS Amplify
-import { API } from 'aws-amplify'
-
+import React, { useState, useEffect } from 'react';
+import { API } from 'aws-amplify';
 import './App.css';
 
-function App() {
+const App = () => {
   // Create coins variable and set to empty array
-  const [coins, updateCoins] = useState([])
+  const [orders, setOrders] = useState([]);
 
-  const fetchCoins = async () => {
+  const fetchOrders = async () => {
 
     try {
       const data = await API.get('cvcorderapi', `/cvcorder`);
-      updateCoins(data.coins);
-      console.log(coins);
+      setOrders(data.orders);
+      console.log(data.orders);
     }
   
     catch (err) {
       console.error(err);
     }
 
-  }
+  };
 
   // Call fetchCoins function when component loads
   useEffect(() => {
-    fetchCoins()
+    fetchOrders()
   }, [])
 
   return (
+
+    <>
     <div className="App">
+      <h3>Order Status:</h3>
       {
-        coins.map((coin, index) => (
+        orders.map((order, index) => (
           <div key={index}>
-            <h2>{coin.name} - {coin.symbol}</h2>
-            <h5>${coin.price_usd}</h5>
+            <p><b>{order.name}</b> {order.symbol}</p>
           </div>
         ))
       }
     </div>
+    </>
   );
 }
 

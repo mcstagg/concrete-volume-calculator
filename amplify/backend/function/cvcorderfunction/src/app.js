@@ -28,13 +28,21 @@ app.use(function(req, res, next) {
  **********************/
 
  app.get('/cvcorder', function(req, res) {
-  const coins = [
-    { name: 'Bitcoin', symbol: 'BTC', price_usd: "10000" },
-    { name: 'Ethereum', symbol: 'ETH', price_usd: "400" },
-    { name: 'Litecoin', symbol: 'LTC', price_usd: "150" }
+  const orders = [
+    { name: 'Date:', symbol: '04/27/2021' },
+    { name: 'Customer:', symbol: 'Stagg Builders' },
+    { name: 'Type of Pour:', symbol: 'Wall' },
+    { name: 'Cubic Yards:', symbol: '24.7' },
+    { name: 'Cholride:', symbol: '0 %' },
+    { name: 'Fiber Mesh:', symbol: 'No' },
+    { name: 'Temperature:', symbol: '70 oF' },
+    { name: 'Slump:', symbol: '5 in' },
+    { name: 'Water Content:', symbol: '3' },
+    { name: 'Address:', symbol: '171 Illinois Ave, Green Lake WI, 54941' },
+    { name: 'Special Instructions:', symbol: 'Come in from the front of the site' }
   ]
   res.json({
-    coins
+    orders
   })
 })
 
