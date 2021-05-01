@@ -3,7 +3,7 @@ import { API } from 'aws-amplify';
 import './App.css';
 import truck from './truck.png';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Row, Col, Container, Form } from 'react-bootstrap';
+import { Row, Col, Container, Form, Button } from 'react-bootstrap';
 
 const App = () => {
   // Create coins variable and set to empty array
@@ -52,42 +52,46 @@ const App = () => {
       </div>
 
       <div>
-        <form>
           <h4>New Dimension:</h4>
           <div className="text-center">
-          <Row>
-            <Col>
-            <Form.Group>
+          <Row className="mb-0">
+            <Col className="mb-0">
+            <Form.Group className="mb-0">
               <Form.Label htmlFor="width" className="pr-2">Width</Form.Label>
               <Form.Control type="text" id="width" placeholder="width" value="" /><br />
             </Form.Group>
             </Col>
             <h5 className="pt-5">in.</h5>
-            <Col>
-            <Form.Group>
+            <Col className="mb-0">
+            <Form.Group className="mb-0">
               <Form.Label htmlFor="height" className="pr-2">Height </Form.Label>
               <Form.Control type="text" id="height" placeholder="Height" value="" /><br />
             </Form.Group>
             </ Col>
             <h5 className="pt-5">ft.</h5>
-            <Col>
-            <Form.Group>
+            <Col className="mb-0">
+            <Form.Group className="mb-0">
               <Form.Label htmlFor="length" className="pr-2">Length </Form.Label>
               <Form.Control type="text" id="length" placeholder="length" value="" /><br />
             </Form.Group>
             </ Col>
             <h5 className="pt-5">ft.</h5>
           </Row>
+          <Row className="float-right">
+          <Button variant="primary" size="m" className="float-center">
+            Enter New Dimension
+          </Button>
+          </Row>
           </div>
-          <input type="submit" value="Add New Dimension" />
-        </form>
       </div>
 
-      <div>
+      <Row className="mt-2 mb-2">
         <h4>Entries:</h4>
+      </Row>
+      <Row className="pl-3">
         <p>8in Wide by 10ft high by 100ft long = 24.7 Cubic Yards</p>
         <p><b>Total Cubic Yards: 24.7</b></p>
-      </div>
+      </Row>
 
       <div>
         <form>
