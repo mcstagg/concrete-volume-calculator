@@ -92,54 +92,74 @@ const App = () => {
         <Col><p className="float-right"><b>24.7</b></p></Col>
       </Row>
 
-      <div>
+      <div className="">
       <h4 className="mb-3">Order Form:</h4>
-      <Row className="pt-3 pb-3 mb-3 block-example border border-dark">
+      <Row className="pt-3 pb-1 mb-3 block-example border border-dark">
         <Form.Group>
         <Col>
-        <Row>
+        <Row className="mx-auto">
           <Col>
-            <Form.Label htmlFor="date">Date:</Form.Label>
+            <Form.Label htmlFor="date"><b>Date:</b></Form.Label>
             <Form.Control type="text" id="date" name="dates" value="date" /><br />
           </Col>
           <Col>
-            <Form.Label htmlFor="customer">Customer: </Form.Label>
+            <Form.Label htmlFor="customer"><b>Customer:</b></Form.Label>
             <Form.Control type="text" id="customer" name="customers" value="customer" /><br />
           </Col>
         </Row>
-        <Row>
+        <Row className="mx-auto">
           <Col>
-          <Form.Label htmlFor="type">Type of Pour: </Form.Label>
+          <Form.Label htmlFor="type"><b>Type of Pour:</b></Form.Label>
           <Form.Control type="text" id="type" name="types" value="type" /><br />
           </Col>
           <Col>
-          <Form.Label htmlFor="yards">Cubic Yards: </Form.Label>
+          <Form.Label htmlFor="yards"><b>Cubic Yards:</b></Form.Label>
           <Form.Control type="text" id="yards" name="cubicyards" value="yards" /><br />
           </Col> 
         </Row>
-        <Row>
-          <Form.Label htmlFor="chloride">Chloride: </Form.Label>
+        <Row className="mx-auto">
+          <Col>
+          <Form.Label htmlFor="chloride"><b>Chloride:</b></Form.Label>
           <Form.Control type="text" id="chloride" name="chloridecontent" value="chloride" /><br />   
-          <Form.Label htmlFor="fiber">Fiber Mesh: </Form.Label>
+          </Col>
+          <Col>
+          <Form.Label htmlFor="fiber"><b>Fiber Mesh:</b></Form.Label>
           <Form.Control type="text" id="fiber" name="fibermesh" value="fiber" /><br />
+          </Col>
         </Row>
-        <Row>
-          <Form.Label htmlFor="temp">Temperature: </Form.Label>
+        <Row className="mx-auto">
+          <Col>
+          <Form.Label htmlFor="temp"><b>Temperature:</b></Form.Label>
           <Form.Control type="text" id="temp" name="temperature" value="temp" /><br />
-          <Form.Label htmlFor="slump">Slump: </Form.Label>
+          </Col>
+          <Col>
+          <Form.Label htmlFor="slump"><b>Slump:</b></Form.Label>
           <Form.Control type="text" id="slump" name="slumpin" value="slump" /><br />
+          </Col>
         </Row> 
-        <Row>   
-          <Form.Label htmlFor="water">Water Content: </Form.Label>
+        <Row className="mx-auto">
+          <Col>
+          <Form.Label htmlFor="water"><b>Water Content:</b></Form.Label>
           <Form.Control type="text" id="water" name="h20" value="water" /><br />
-          <Form.Label htmlFor="address">Address: </Form.Label>
-          <Form.Control type="text" id="address" name="jobadress" value="address" /><br />
+          </Col>
+          <Col> 
+          <Form.Label htmlFor="pourDate"><b>Date of Pour:</b></Form.Label>
+          <Form.Control type="text" id="pour" name="pourDate" value="pour" /><br />
+          </Col>  
         </Row>
-        <Row>    
-          <Form.Label htmlFor="special">Special Instructions: </Form.Label>
+        <Row className="mx-auto">
+          <Col>    
+          <Form.Label htmlFor="address"><b>Address:</b></Form.Label>
+          <Form.Control type="text" id="address" name="jobAddress" value="address" /><br />
+          </Col>
+        </Row> 
+        <Row className="mx-auto">
+          <Col>   
+          <Form.Label htmlFor="special"><b>Special Instructions:</b></Form.Label>
           <Form.Control type="text" id="special" name="specialinstructions" value="special" /><br />
+          </Col> 
         </Row>  
-          <Button variant="primary" size="m" className="float-center mt-2">
+          <Button variant="primary" size="m" className="float-right mt-2">
             Place Your Order
           </Button>
         </Col>
