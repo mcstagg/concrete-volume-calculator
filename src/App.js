@@ -75,7 +75,7 @@ const App = () => {
             <h5 className="pt-5">ft.</h5>
           </Row>
           <Row className="float-right">
-          <Button variant="primary" size="m" className="float-center mt-2">
+          <Button variant="primary" size="m" className="mt-2 pl-4 pr-4">
             Enter New Dimension
           </Button>
           </Row>
@@ -95,81 +95,84 @@ const App = () => {
       <div className="">
       <h4 className="mb-3">Order Form:</h4>
       <Row className="pt-3 pb-1 mb-3 block-example border border-dark">
+        <Col>
         <Form.Group>
         <Col>
         <Row className="mx-auto">
-          <Col>
+          <Col className="mb-0">
             <Form.Label htmlFor="date"><b>Date:</b></Form.Label>
-            <Form.Control type="text" id="date" name="dates" value="date" /><br />
+            <Form.Control type="text" id="date" name="dates" placeholder="date"/><br />
           </Col>
           <Col>
             <Form.Label htmlFor="customer"><b>Customer:</b></Form.Label>
-            <Form.Control type="text" id="customer" name="customers" value="customer" /><br />
+            <Form.Control type="text" id="customer" name="customers" placeholder="customer" /><br />
           </Col>
         </Row>
         <Row className="mx-auto">
           <Col>
           <Form.Label htmlFor="type"><b>Type of Pour:</b></Form.Label>
-          <Form.Control type="text" id="type" name="types" value="type" /><br />
+          <Form.Control type="text" id="type" name="types" placeholder="type of pour"/><br />
           </Col>
           <Col>
           <Form.Label htmlFor="yards"><b>Cubic Yards:</b></Form.Label>
-          <Form.Control type="text" id="yards" name="cubicyards" value="yards" /><br />
+          <Form.Control type="text" id="yards" name="cubicyards" placeholder="cubic yards"/><br />
           </Col> 
         </Row>
         <Row className="mx-auto">
           <Col>
           <Form.Label htmlFor="chloride"><b>Chloride:</b></Form.Label>
-          <Form.Control type="text" id="chloride" name="chloridecontent" value="chloride" /><br />   
+          <Form.Control type="text" id="chloride" name="chloridecontent" placeholder="chloride"/><br />   
           </Col>
           <Col>
           <Form.Label htmlFor="fiber"><b>Fiber Mesh:</b></Form.Label>
-          <Form.Control type="text" id="fiber" name="fibermesh" value="fiber" /><br />
+          <Form.Control type="text" id="fiber" name="fibermesh" placeholder="fiber mesh" /><br />
           </Col>
         </Row>
         <Row className="mx-auto">
           <Col>
           <Form.Label htmlFor="temp"><b>Temperature:</b></Form.Label>
-          <Form.Control type="text" id="temp" name="temperature" value="temp" /><br />
+          <Form.Control type="text" id="temp" name="temperature" placeholder="temp" /><br />
           </Col>
           <Col>
           <Form.Label htmlFor="slump"><b>Slump:</b></Form.Label>
-          <Form.Control type="text" id="slump" name="slumpin" value="slump" /><br />
+          <Form.Control type="text" id="slump" name="slumpin" placeholder="slump" /><br />
           </Col>
         </Row> 
         <Row className="mx-auto">
           <Col>
           <Form.Label htmlFor="water"><b>Water Content:</b></Form.Label>
-          <Form.Control type="text" id="water" name="h20" value="water" /><br />
+          <Form.Control type="text" id="water" name="h20" placeholder="water content" /><br />
           </Col>
           <Col> 
           <Form.Label htmlFor="pourDate"><b>Date of Pour:</b></Form.Label>
-          <Form.Control type="text" id="pour" name="pourDate" value="pour" /><br />
+          <Form.Control type="text" id="pour" name="pourDate" placeholder="date of pour" /><br />
           </Col>  
         </Row>
         <Row className="mx-auto">
           <Col>    
           <Form.Label htmlFor="address"><b>Address:</b></Form.Label>
-          <Form.Control type="text" id="address" name="jobAddress" value="address" /><br />
+          <Form.Control as="textarea" rows={3} type="text" id="address" name="jobAddress" placeholder="address" /><br />
           </Col>
         </Row> 
         <Row className="mx-auto">
           <Col>   
           <Form.Label htmlFor="special"><b>Special Instructions:</b></Form.Label>
-          <Form.Control type="text" id="special" name="specialinstructions" value="special" /><br />
+          <Form.Control as="textarea" rows={3} type="text" id="special" name="specialinstructions" placeholder="special instructions" /><br />
           </Col> 
         </Row>  
-          <Button variant="primary" size="m" className="float-right mt-2">
+          <Button variant="primary" size="m" className="float-right mb-3 mr-3 pl-5 pr-5">
             Place Your Order
           </Button>
         </Col>
         </Form.Group>
+        </Col>
       </Row>
       </div>
     
       
-      <div className="">
-        <h3>Your Order Has Been Confirmed!</h3>
+      <Row className="pt-2 mb-3 block-example border border-dark">
+        <Col>
+        <h3 className="mb-3">Your Order Has Been Confirmed!</h3>
         {
           orders.map((order, index) => (
             <div key={index}>
@@ -177,7 +180,8 @@ const App = () => {
             </div>
           ))
         }
-      </div>
+        </Col>
+      </Row>
       </Container>
     </>
   );
