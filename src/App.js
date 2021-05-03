@@ -15,11 +15,23 @@ const App = () => {
   const [totalCubicYards, setTotalCubicYards] = useState();
   const [entries, setEntries] = useState([]);
 
+  // Dimension and display logic
+  // Handles the add dimension event upon add new dimension button click
+  const addDimension = (width, height, length) => {
+
+    setEntries(
+      entries.concat({
+        width: width,
+        height: height,
+        length: length
+      })
+    );
+  };
+
   // Order form variables
   const [date, setDate] = useState();
   const [customer, setCustomer] = useState();
   const [typeOfPour, setTypeOfPour] = useState();
-  const [cubicYards, setCubicYards] = useState();
   const [chloride, setChloride] = useState();
   const [fiberMesh, setFiberMesh] = useState();
   const [temperature, setTemperature] = useState();
@@ -29,6 +41,8 @@ const App = () => {
   const [address, setAddress] = useState();
   const [specialInstructions, setSpecialInstructions] = useState();
   const [placedOrder, setPlacedOrder] = useState([]);
+
+  // Order and display logic
 
   // Confirmation variables
   const [orders, setOrders] = useState([]);
@@ -55,65 +69,184 @@ const App = () => {
     <>
       <Container>
       <Row className="mb-2">
-        <Col><img src={truck} alt="truck" /></Col>
-        <Col><h1 className="text-center"><u>Concrete Volume Calculator</u></h1></Col>
+        <Col>
+          <img 
+            src={truck} 
+            alt="truck" 
+          />
+        </Col>
+        <Col>
+          <h1 className="text-center">
+            <u>Concrete Volume Calculator</u>
+          </h1>
+        </Col>
       </Row>
       
       <div>
-        <h4 className="text-center"><i>Enter Your Details Below:</i></h4>
+        <h4 className="text-center">
+          <i>Enter Your Details Below:</i>
+        </h4>
         <Row>
-        <Col><input type="radio" id="wall" name="options" value="wall" />
-        <label htmlFor="wall" className="pl-2"> Wall</label></Col>
-        <Col><input type="radio" id="footing" name="options" value="footing" />
-        <label htmlFor="footing" className="pl-2">Footing</label></Col>
-        <Col><input type="radio" id="patio" name="options" value="patio" />
-        <label htmlFor="patio" className="pl-2">Floor</label></Col>
-        <Col><input type="radio" id="sidewalk" name="options" value="sidewalk" />
-        <label htmlFor="sidewalk" className="pl-2">Patio</label></Col>
+        <Col>
+          <input 
+            type="radio" 
+            id="wall" 
+            name="options"
+          />
+          <label 
+            htmlFor="wall" 
+            className="pl-2"
+          > 
+            Wall
+          </label>
+        </Col>
+        <Col>
+          <input 
+            type="radio" 
+            id="footing" 
+            name="options" 
+          />
+          <label 
+            htmlFor="footing" 
+            className="pl-2"
+          > 
+            Footing
+          </label>
+        </Col>
+        <Col>
+          <input 
+            type="radio" 
+            id="patio" 
+            name="options" 
+          />
+          <label 
+            htmlFor="patio" 
+            className="pl-2"
+          >
+            Floor
+          </label>
+        </Col>
+        <Col>
+          <input 
+            type="radio" 
+            id="sidewalk" 
+            name="options" 
+          />
+          <label 
+            htmlFor="sidewalk" 
+            className="pl-2"
+          >
+            Patio
+          </label></Col>
         </Row>
       </div>
 
       <div>
           <h4>New Dimension:</h4>
-          <Row className="mb-0 pr-2 pt-3 block-example border border-dark text-center">
+          <Row 
+            className="mb-0 pr-2 pt-3 block-example border border-dark text-center"
+          >
             <Col className="mb-0">
-            <Form.Group className="mb-0">
-              <Form.Label htmlFor="width" className="pr-2">Width</Form.Label>
-              <Form.Control type="text" id="width" placeholder="width" value="" /><br />
-            </Form.Group>
+              <Form.Group className="mb-0">
+                <Form.Label 
+                  htmlFor="width" 
+                  className="pr-2"
+                >
+                  Width
+                </Form.Label>
+                <Form.Control 
+                  type="text" 
+                  id="width" 
+                  placeholder="width"
+                  value={width} 
+                  onChange={
+                    e => setWidth(e.target.value)
+                  }
+                />
+              </Form.Group>
             </Col>
             <h5 className="pt-5">in.</h5>
             <Col className="mb-0">
-            <Form.Group className="mb-0">
-              <Form.Label htmlFor="height" className="pr-2">Height</Form.Label>
-              <Form.Control type="text" id="height" placeholder="Height" value="" /><br />
-            </Form.Group>
+              <Form.Group className="mb-0">
+                <Form.Label 
+                  htmlFor="height" 
+                  className="pr-2"
+                >
+                  Height
+                </Form.Label>
+                <Form.Control 
+                  type="text" 
+                  id="height" 
+                  placeholder="Height"
+                  value={height} 
+                  onChange={
+                    e => setHeight(e.target.value)
+                  } 
+                />
+              </Form.Group>
             </ Col>
             <h5 className="pt-5">ft.</h5>
             <Col className="mb-0">
-            <Form.Group className="mb-0">
-              <Form.Label htmlFor="length" className="pr-2">Length</Form.Label>
-              <Form.Control type="text" id="length" placeholder="length" value="" /><br />
-            </Form.Group>
+              <Form.Group className="mb-0">
+                <Form.Label 
+                  htmlFor="length" 
+                  className="pr-2"
+                >
+                  Length
+                </Form.Label>
+                <Form.Control 
+                  type="text" 
+                  id="length" 
+                  placeholder="length"
+                  value={length} 
+                  onChange={
+                    e => setLength(e.target.value)
+                  }  
+                />
+              </Form.Group>
             </ Col>
             <h5 className="pt-5">ft.</h5>
           </Row>
           <Row className="float-right">
-          <Button variant="primary" size="m" className="mt-2 pl-4 pr-4">
-            Enter New Dimension
-          </Button>
+            <Button 
+              variant="primary" 
+              size="m" 
+              className="mt-2 pl-4 pr-4"
+              onClick={
+                () => {
+                  addDimension(width, height, length);
+                  setWidth(' ');
+                  setHeight(' ');
+                  setLength(' ');
+                }
+              }
+            >
+              Enter New Dimension
+            </Button>
           </Row>
       </div>
 
       <Row className="mt-2 mb-2">
         <h4>Entries:</h4>
       </Row>
-      <Row className="pt-3 block-example border border-dark">
-        <Col><p>8in Wide by 10ft high by 100ft long = 24.7 Cubic Yards</p></Col>
+      <Row 
+        className="pt-3 block-example border border-dark"
+      >
+        <Col>
+          <p>8in Wide by 10ft high by 100ft long = 24.7 Cubic Yards</p>
+        </Col>
       </Row>
-      <Row className="pt-3 mb-3 block-example border-left border-right border-bottom border-dark">
-        <Col><p><b>Total Cubic Yards:</b></p></Col>
-        <Col><p className="float-right"><b>24.7</b></p></Col>
+      <Row 
+        className="pt-3 mb-3 block-example border-left border-right border-bottom border-dark"
+      >
+        <Col>
+          <p><b>Total Cubic Yards:</b></p>
+        </Col>
+        <Col>
+          <p className="float-right">
+          <b>24.7</b>
+          </p>
+        </Col>
       </Row>
 
       <div className="">
