@@ -8,9 +8,9 @@ import { Row, Col, Container, Form, Button } from 'react-bootstrap';
 const App = () => {
 
   // Dimension variables
-  const [width, setWidth] = useState(0);
-  const [height, setHeight] = useState(0);
-  const [length, setLength] = useState(0);
+  const [width, setWidth] = useState();
+  const [height, setHeight] = useState();
+  const [length, setLength] = useState();
   const [cubicYards, setCubicYards] = useState(0);
   const [totalCubicYards, setTotalCubicYards] = useState(0);
   const [entries, setEntries] = useState([]);
@@ -19,14 +19,29 @@ const App = () => {
   // Handles the add dimension event upon add new dimension button click
   const addDimension = (width, height, length) => {
 
+    let heightInInches = height * 12;
+    let lengthInInches = length * 12;
+    let cubicInches = width * heightInInches * lengthInInches;
+    let inchesInYards = 46656;
+    let volume = cubicInches / inchesInYards;
+    calculateTotalCubicYards(volume);
+    setCubicYards(volume); 
+
     setEntries(
       entries.concat({
         width: width,
         height: height,
-        length: length
+        length: length,
+        cubicYards: volume.toFixed(2)
       })
     );
   };
+
+  const calculateTotalCubicYards = (volume) => {
+    let total = totalCubicYards;
+    let totalVolume = total += volume; 
+    setTotalCubicYards(totalVolume); 
+  }
 
   // Order form variables
   const [date, setDate] = useState();
@@ -246,21 +261,22 @@ const App = () => {
         <h4>Entries:</h4>
       </Row>
       <Row 
-        className="pt-3 block-example border border-dark"
+        className="pt-3 pb-3 block-example border border-dark"
       >
         <Col>
           {
             entries.map(
               (entry, index) => (
                 <span>
-                  {entry.width}
-                  {entry.height}
-                  {entry.length}
+                  <b>{entry.width}</b> in. wide by&nbsp;
+                  <b>{entry.height}</b> ft. high by&nbsp;
+                  <b>{entry.length}</b> ft. long =&nbsp;
+                  <b>{entry.cubicYards}</b> cubic yards
+                  <br />
                 </span>
               )
             )
           }
-          <p>8in Wide by 10ft high by 100ft long = 24.7 Cubic Yards</p>
         </Col>
       </Row>
       <Row 
@@ -271,7 +287,11 @@ const App = () => {
         </Col>
         <Col>
           <p className="float-right">
-          <b>24.7</b>
+          <b>
+            {
+              totalCubicYards.toFixed(2)
+            }
+          </b>
           </p>
         </Col>
       </Row>
