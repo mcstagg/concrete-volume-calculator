@@ -6,7 +6,31 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Row, Col, Container, Form, Button } from 'react-bootstrap';
 
 const App = () => {
-  // Create coins variable and set to empty array
+
+  // Dimension variables
+  const [width, setWidth] = useState();
+  const [height, setHeight] = useState();
+  const [length, setLength] = useState();
+  const [cubicYards, setCubicYards] = useState();
+  const [totalCubicYards, setTotalCubicYards] = useState();
+  const [entries, setEntries] = useState([]);
+
+  // Order form variables
+  const [date, setDate] = useState();
+  const [customer, setCustomer] = useState();
+  const [typeOfPour, setTypeOfPour] = useState();
+  const [cubicYards, setCubicYards] = useState();
+  const [chloride, setChloride] = useState();
+  const [fiberMesh, setFiberMesh] = useState();
+  const [temperature, setTemperature] = useState();
+  const [slump, setSlump] = useState();
+  const [waterContent, setWaterContent] = useState();
+  const [dateOfPour, setDateOfPour] = useState();
+  const [address, setAddress] = useState();
+  const [specialInstructions, setSpecialInstructions] = useState();
+  const [placedOrder, setPlacedOrder] = useState([]);
+
+  // Confirmation variables
   const [orders, setOrders] = useState([]);
 
   const fetchOrders = async () => {
