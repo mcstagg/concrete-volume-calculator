@@ -8,11 +8,11 @@ import { Row, Col, Container, Form, Button } from 'react-bootstrap';
 const App = () => {
 
   // Dimension variables
-  const [width, setWidth] = useState();
-  const [height, setHeight] = useState();
-  const [length, setLength] = useState();
-  const [cubicYards, setCubicYards] = useState();
-  const [totalCubicYards, setTotalCubicYards] = useState();
+  const [width, setWidth] = useState(0);
+  const [height, setHeight] = useState(0);
+  const [length, setLength] = useState(0);
+  const [cubicYards, setCubicYards] = useState(0);
+  const [totalCubicYards, setTotalCubicYards] = useState(0);
   const [entries, setEntries] = useState([]);
 
   // Dimension and display logic
@@ -92,6 +92,10 @@ const App = () => {
             type="radio" 
             id="wall" 
             name="options"
+            value="wall"
+            onChange={
+              e => setTypeOfPour(e.target.value)
+            }
           />
           <label 
             htmlFor="wall" 
@@ -104,7 +108,11 @@ const App = () => {
           <input 
             type="radio" 
             id="footing" 
-            name="options" 
+            name="options"
+            value="footing"
+            onChange={
+              e => setTypeOfPour(e.target.value)
+            } 
           />
           <label 
             htmlFor="footing" 
@@ -117,7 +125,11 @@ const App = () => {
           <input 
             type="radio" 
             id="patio" 
-            name="options" 
+            name="options"
+            value="floor"
+            onChange={
+              e => setTypeOfPour(e.target.value)
+            } 
           />
           <label 
             htmlFor="patio" 
@@ -129,8 +141,12 @@ const App = () => {
         <Col>
           <input 
             type="radio" 
-            id="sidewalk" 
-            name="options" 
+            id="patio" 
+            name="options"
+            value="patio"
+            onChange={
+              e => setTypeOfPour(e.target.value)
+            } 
           />
           <label 
             htmlFor="sidewalk" 
@@ -233,6 +249,17 @@ const App = () => {
         className="pt-3 block-example border border-dark"
       >
         <Col>
+          {
+            entries.map(
+              (entry, index) => (
+                <span>
+                  {entry.width}
+                  {entry.height}
+                  {entry.length}
+                </span>
+              )
+            )
+          }
           <p>8in Wide by 10ft high by 100ft long = 24.7 Cubic Yards</p>
         </Col>
       </Row>
