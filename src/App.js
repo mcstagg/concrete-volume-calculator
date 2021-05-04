@@ -23,9 +23,9 @@ const App = () => {
     let lengthInInches = length * 12;
     let cubicInches = width * heightInInches * lengthInInches;
     let inchesInYards = 46656;
-    let volume = cubicInches / inchesInYards;
+    let volume = (cubicInches / inchesInYards)
     calculateTotalCubicYards(volume);
-    setCubicYards(volume); 
+    setCubicYards(volume.toFixed(2)); 
 
     setEntries(
       entries.concat({
@@ -39,7 +39,7 @@ const App = () => {
 
   const calculateTotalCubicYards = (volume) => {
     let total = totalCubicYards;
-    let totalVolume = total += volume; 
+    let totalVolume = (total += volume).toFixed(2); 
     setTotalCubicYards(totalVolume); 
   }
 
@@ -58,6 +58,25 @@ const App = () => {
   const [placedOrder, setPlacedOrder] = useState([]);
 
   // Order and display logic
+  const addOrder = () => {
+
+    setEntries(
+      placedOrder.concat({
+        date: date,
+        customer: customer,
+        typeOfPour: typeOfPour,
+        cubicYards: cubicYards,
+        chloride: chloride,
+        fiberMesh: fiberMesh,
+        temperature: temperature,
+        slump: slump,
+        waterContent: waterContent,
+        dateOfPour: dateOfPour,
+        address: address,
+        specialInstructions: specialInstructions
+      })
+    );
+  }
 
   // Confirmation variables
   const [orders, setOrders] = useState([]);
@@ -267,7 +286,7 @@ const App = () => {
           {
             entries.map(
               (entry, index) => (
-                <span>
+                <span key={index}>
                   <b>{entry.width}</b> in. wide by&nbsp;
                   <b>{entry.height}</b> ft. high by&nbsp;
                   <b>{entry.length}</b> ft. long =&nbsp;
@@ -289,7 +308,7 @@ const App = () => {
           <p className="float-right">
           <b>
             {
-              totalCubicYards.toFixed(2)
+              totalCubicYards
             }
           </b>
           </p>
@@ -300,90 +319,222 @@ const App = () => {
       <h4 className="mb-3">Order Form:</h4>
       <Row className="pt-3 pb-1 mb-3 block-example border border-dark">
         <Col>
-        <Form.Group>
-        <Col>
-        <Row className="mx-auto">
-          <Col className="mb-0">
-            <Form.Label htmlFor="date"><b>Date:</b></Form.Label>
-            <Form.Control type="text" id="date" name="dates" placeholder="date"/><br />
-          </Col>
+          <Form.Group>
           <Col>
-            <Form.Label htmlFor="customer"><b>Customer:</b></Form.Label>
-            <Form.Control type="text" id="customer" name="customers" placeholder="customer" /><br />
+          <Row className="mx-auto">
+            <Col className="mb-0">
+              <Form.Label htmlFor="date">
+                <b>Date:</b>
+              </Form.Label>
+              <Form.Control 
+                type="text" 
+                id="date" 
+                name="dates" 
+                placeholder="date"
+                onChange={
+                  e => setDate(e.target.value)
+                }
+              />
+            </Col>
+            <Col>
+              <Form.Label htmlFor="customer">
+                <b>Customer:</b>
+              </Form.Label>
+              <Form.Control 
+                type="text" 
+                id="customer" 
+                name="customers" 
+                placeholder="customer"
+                onChange={
+                  e => setCustomer(e.target.value)
+                } 
+              />
+            </Col>
+          </Row>
+          <Row className="mx-auto">
+            <Col>
+              <Form.Label htmlFor="type">
+                <b>Type of Pour:</b>
+              </Form.Label>
+              <Form.Control 
+                type="text" 
+                id="type" 
+                name="types" 
+                placeholder={typeOfPour}
+                onChange={
+                  e => setTypeOfPour(e.target.value)
+                }
+              />
+            </Col>
+            <Col>
+              <Form.Label htmlFor="yards">
+                <b>Cubic Yards:</b>
+              </Form.Label>
+              <Form.Control 
+                type="text" 
+                id="yards" 
+                name="cubicyards" 
+                placeholder={totalCubicYards}
+                onChange={
+                  e => setTotalCubicYards(e.target.value)
+                }
+              />
+            </Col> 
+          </Row>
+          <Row className="mx-auto">
+            <Col>
+              <Form.Label htmlFor="chloride">
+                <b>Chloride:</b>
+              </Form.Label>
+              <Form.Control 
+                type="text" 
+                id="chloride" 
+                name="chloridecontent" 
+                placeholder="chloride"
+                onChange={
+                  e => setChloride(e.target.value)
+                }
+              />   
+            </Col>
+            <Col>
+              <Form.Label htmlFor="fiber">
+                <b>Fiber Mesh:</b>
+              </Form.Label>
+              <Form.Control 
+                type="text" 
+                id="fiber" 
+                name="fibermesh" 
+                placeholder="fiber mesh"
+                onChange={
+                  e => setFiberMesh(e.target.value)
+                } 
+              />
+            </Col>
+          </Row>
+          <Row className="mx-auto">
+            <Col>
+            <Form.Label htmlFor="temp">
+              <b>Temperature:</b>
+            </Form.Label>
+            <Form.Control 
+              type="text" 
+              id="temp" 
+              name="temperature" 
+              placeholder="temp"
+              onChange={
+                e => setTemperature(e.target.value)
+              } 
+            />
+            </Col>
+            <Col>
+              <Form.Label htmlFor="slump">
+                <b>Slump:</b>
+              </Form.Label>
+              <Form.Control 
+                type="text" 
+                id="slump" 
+                name="slumpin" 
+                placeholder="slump"
+                onChange={
+                  e => setSlump(e.target.value)
+                } 
+              />
+            </Col>
+          </Row> 
+          <Row className="mx-auto">
+            <Col>
+              <Form.Label htmlFor="water">
+                <b>Water Content:</b>
+              </Form.Label>
+              <Form.Control 
+                type="text" 
+                id="water" 
+                name="h20" 
+                placeholder="water content"
+                onChange={
+                  e => setWaterContent(e.target.value)
+                } 
+              />
+            </Col>
+            <Col> 
+              <Form.Label htmlFor="pourDate">
+                <b>Date of Pour:</b>
+              </Form.Label>
+              <Form.Control 
+                type="text" 
+                id="pour" 
+                name="pourDate" 
+                placeholder="date of pour"
+                onChange={
+                  e => setDateOfPour(e.target.value)
+                } 
+              />
+            </Col>  
+          </Row>
+          <Row className="mx-auto">
+            <Col>    
+              <Form.Label htmlFor="address">
+                <b>Address:</b>
+              </Form.Label>
+              <Form.Control 
+                as="textarea" 
+                rows={3} 
+                type="text" 
+                id="address" 
+                name="jobAddress" 
+                placeholder="address"
+                onChange={
+                  e => setAddress(e.target.value)
+                } 
+              />
+            </Col>
+          </Row> 
+          <Row className="mx-auto">
+            <Col>   
+              <Form.Label htmlFor="special">
+                <b>Special Instructions:</b>
+              </Form.Label>
+              <Form.Control 
+                as="textarea" 
+                rows={3} 
+                type="text" 
+                id="special" 
+                name="specialinstructions" 
+                placeholder="special instructions"
+                onChange={
+                  e => setSpecialInstructions(e.target.value)
+                } 
+              />
+            </Col> 
+          </Row>  
+            <Button 
+              variant="primary" 
+              size="m" 
+              className="float-right mb-3 mt-3 mr-3 pl-5 pr-5"
+              onClick={
+                () => {
+                  addOrder();
+                }
+              }
+            >
+              Place Your Order
+            </Button>
           </Col>
-        </Row>
-        <Row className="mx-auto">
-          <Col>
-          <Form.Label htmlFor="type"><b>Type of Pour:</b></Form.Label>
-          <Form.Control type="text" id="type" name="types" placeholder="type of pour"/><br />
-          </Col>
-          <Col>
-          <Form.Label htmlFor="yards"><b>Cubic Yards:</b></Form.Label>
-          <Form.Control type="text" id="yards" name="cubicyards" placeholder="cubic yards"/><br />
-          </Col> 
-        </Row>
-        <Row className="mx-auto">
-          <Col>
-          <Form.Label htmlFor="chloride"><b>Chloride:</b></Form.Label>
-          <Form.Control type="text" id="chloride" name="chloridecontent" placeholder="chloride"/><br />   
-          </Col>
-          <Col>
-          <Form.Label htmlFor="fiber"><b>Fiber Mesh:</b></Form.Label>
-          <Form.Control type="text" id="fiber" name="fibermesh" placeholder="fiber mesh" /><br />
-          </Col>
-        </Row>
-        <Row className="mx-auto">
-          <Col>
-          <Form.Label htmlFor="temp"><b>Temperature:</b></Form.Label>
-          <Form.Control type="text" id="temp" name="temperature" placeholder="temp" /><br />
-          </Col>
-          <Col>
-          <Form.Label htmlFor="slump"><b>Slump:</b></Form.Label>
-          <Form.Control type="text" id="slump" name="slumpin" placeholder="slump" /><br />
-          </Col>
-        </Row> 
-        <Row className="mx-auto">
-          <Col>
-          <Form.Label htmlFor="water"><b>Water Content:</b></Form.Label>
-          <Form.Control type="text" id="water" name="h20" placeholder="water content" /><br />
-          </Col>
-          <Col> 
-          <Form.Label htmlFor="pourDate"><b>Date of Pour:</b></Form.Label>
-          <Form.Control type="text" id="pour" name="pourDate" placeholder="date of pour" /><br />
-          </Col>  
-        </Row>
-        <Row className="mx-auto">
-          <Col>    
-          <Form.Label htmlFor="address"><b>Address:</b></Form.Label>
-          <Form.Control as="textarea" rows={3} type="text" id="address" name="jobAddress" placeholder="address" /><br />
-          </Col>
-        </Row> 
-        <Row className="mx-auto">
-          <Col>   
-          <Form.Label htmlFor="special"><b>Special Instructions:</b></Form.Label>
-          <Form.Control as="textarea" rows={3} type="text" id="special" name="specialinstructions" placeholder="special instructions" /><br />
-          </Col> 
-        </Row>  
-          <Button variant="primary" size="m" className="float-right mb-3 mr-3 pl-5 pr-5">
-            Place Your Order
-          </Button>
-        </Col>
-        </Form.Group>
+          </Form.Group>
         </Col>
       </Row>
       </div>
     
-      
       <Row className="pt-2 mb-3 block-example border border-dark">
         <Col>
-        <h3 className="mb-3">Your Order Has Been Confirmed!</h3>
-        {
-          orders.map((order, index) => (
-            <div key={index}>
-              <p><b>{order.name}</b> {order.symbol}</p>
-            </div>
-          ))
-        }
+          <h3 className="mb-3">Your Order Has Been Confirmed!</h3>
+          {
+            orders.map((order, index) => (
+              <div key={index}>
+                <p><b>{order.name}</b> {order.symbol}</p>
+              </div>
+            ))
+          }
         </Col>
       </Row>
       </Container>
