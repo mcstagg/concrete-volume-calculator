@@ -4,6 +4,7 @@ import './App.css';
 import truck from './truck.png';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import VerifyModal from './VerifyModal';
+import ConfirmModal from './ConfirmModal';
 import { Row, Col, Container, Form, Button } from 'react-bootstrap';
 
 const App = () => {
@@ -14,6 +15,7 @@ const App = () => {
   const [length, setLength] = useState();
   const [cubicYards, setCubicYards] = useState(0);
   const [totalCubicYards, setTotalCubicYards] = useState(0);
+  const [displayCubicYards, setDisplayCubicYards] = useState();
   const [entries, setEntries] = useState([]);
 
   // Dimension and display logic
@@ -42,7 +44,8 @@ const App = () => {
     let total = totalCubicYards;
     let totalVolume = (total += volume);
     let fixedVolume = Number(totalVolume.toFixed(2));
-    setTotalCubicYards(fixedVolume); 
+    setTotalCubicYards(fixedVolume);
+    setDisplayCubicYards(fixedVolume); 
   }
 
   // Order form variables
@@ -59,6 +62,7 @@ const App = () => {
   const [specialInstructions, setSpecialInstructions] = useState();
   const [placedOrder, setPlacedOrder] = useState([]);
   const [modalShow, setModalShow] = useState(false);
+  const [confirmModalShow, setConfirmModalShow] = useState(false);
 
   // Order and display logic
   const addOrder = () => {
@@ -83,6 +87,10 @@ const App = () => {
 
   const showVerifyModal = () => {
     setModalShow(true);
+  }
+
+  const showConfimationModal = () => {
+    setConfirmModalShow(true);
   }
 
   // Confirmation variables
@@ -133,7 +141,7 @@ const App = () => {
             type="radio" 
             id="wall" 
             name="options"
-            value="wall"
+            value="Wall"
             onChange={
               e => setTypeOfPour(e.target.value)
             }
@@ -150,7 +158,7 @@ const App = () => {
             type="radio" 
             id="footing" 
             name="options"
-            value="footing"
+            value="Footing"
             onChange={
               e => setTypeOfPour(e.target.value)
             } 
@@ -167,7 +175,7 @@ const App = () => {
             type="radio" 
             id="patio" 
             name="options"
-            value="floor"
+            value="Floor"
             onChange={
               e => setTypeOfPour(e.target.value)
             } 
@@ -184,7 +192,7 @@ const App = () => {
             type="radio" 
             id="patio" 
             name="options"
-            value="patio"
+            value="Patio"
             onChange={
               e => setTypeOfPour(e.target.value)
             } 
@@ -366,8 +374,9 @@ const App = () => {
               <Form.Control 
                 type="text" 
                 id="type" 
-                name="types" 
-                placeholder={typeOfPour}
+                name="types"
+                value={typeOfPour} 
+                placeholder="type of pour"
                 onChange={
                   e => setTypeOfPour(e.target.value)
                 }
@@ -381,7 +390,8 @@ const App = () => {
                 type="text" 
                 id="yards" 
                 name="cubicyards" 
-                placeholder={totalCubicYards}
+                placeholder="0.00"
+                value={displayCubicYards}
                 onChange={
                   e => setTotalCubicYards(e.target.value)
                 }
@@ -538,7 +548,17 @@ const App = () => {
         onHide={
           () => setModalShow(false)
         }
-        entries={entries} 
+        entries={entries}
+        onConfirm={
+          () => setConfirmModalShow(true)
+        }
+      />
+
+      <ConfirmModal 
+        show={confirmModalShow} 
+        onHide={
+          () => setConfirmModalShow(false)
+        }
       />
     
       <Row className="pt-2 mb-3 block-example border border-dark">

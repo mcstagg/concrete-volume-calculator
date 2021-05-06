@@ -1,7 +1,8 @@
-import react from 'react';
+import { react, useState } from 'react';
+import { API } from 'aws-amplify';
 import BModal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
-import { useRef } from 'react'; 
+import { Row, Col, Container } from 'react-bootstrap';
 
 const VerifyModal = (props) => {
 
@@ -37,6 +38,20 @@ const VerifyModal = (props) => {
       specialInstructions = item.specialInstructions;
     });
 
+    const [orders, setOrders] = useState([]);
+
+    const fetchOrders = async () => {
+
+      try {
+        const data = await API.get('cvcorderapi', `/cvcorder`);
+        setOrders(data.orders);
+        console.log(data.orders);
+      }
+      catch (err) {
+        console.error(err);
+      };
+    };
+
     return (
       <BModal
         {...props}
@@ -50,6 +65,9 @@ const VerifyModal = (props) => {
           </BModal.Title>
         </BModal.Header>
         <BModal.Body>
+          <Container>
+          <Row>
+          <Col className="block-example border border-dark pl-3 pt-2">
           {
             <>
             <p><b>Date: </b>{date}</p>
@@ -66,10 +84,13 @@ const VerifyModal = (props) => {
             <p><b>Special Instructions: </b>{specialInstructions}</p>
             </>
           }
+          </Col>
+          </Row>
+          </Container>
         </BModal.Body>
         <BModal.Footer>
           <Button onClick={props.onHide}>Edit Order</Button>
-          <Button onClick={props.onQuit}>Confirm Order</Button>
+          <Button onClick={props.onHide, props.onConfirm}>Confirm Order</Button>
         </BModal.Footer>
       </BModal>
     );
