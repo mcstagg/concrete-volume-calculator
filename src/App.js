@@ -3,6 +3,7 @@ import { API } from 'aws-amplify';
 import './App.css';
 import truck from './truck.png';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import VerifyModal from './VerifyModal';
 import { Row, Col, Container, Form, Button } from 'react-bootstrap';
 
 const App = () => {
@@ -25,7 +26,7 @@ const App = () => {
     let inchesInYards = 46656;
     let volume = (cubicInches / inchesInYards)
     calculateTotalCubicYards(volume);
-    setCubicYards(volume.toFixed(2)); 
+    setCubicYards(Number(volume.toFixed(2))); 
 
     setEntries(
       entries.concat({
@@ -39,8 +40,9 @@ const App = () => {
 
   const calculateTotalCubicYards = (volume) => {
     let total = totalCubicYards;
-    let totalVolume = (total += volume).toFixed(2); 
-    setTotalCubicYards(totalVolume); 
+    let totalVolume = (total += volume);
+    let fixedVolume = Number(totalVolume.toFixed(2));
+    setTotalCubicYards(fixedVolume); 
   }
 
   // Order form variables
@@ -56,6 +58,7 @@ const App = () => {
   const [address, setAddress] = useState();
   const [specialInstructions, setSpecialInstructions] = useState();
   const [placedOrder, setPlacedOrder] = useState([]);
+  const [modalShow, setModalShow] = useState(false);
 
   // Order and display logic
   const addOrder = () => {
@@ -76,6 +79,10 @@ const App = () => {
         specialInstructions: specialInstructions
       })
     );
+  }
+
+  const showVerifyModal = () => {
+    setModalShow(true);
   }
 
   // Confirmation variables
@@ -330,7 +337,7 @@ const App = () => {
                 type="text" 
                 id="date" 
                 name="dates" 
-                placeholder="date"
+                placeholder="MM/DD/YY"
                 onChange={
                   e => setDate(e.target.value)
                 }
@@ -514,6 +521,7 @@ const App = () => {
               onClick={
                 () => {
                   addOrder();
+                  showVerifyModal();
                 }
               }
             >
@@ -524,6 +532,13 @@ const App = () => {
         </Col>
       </Row>
       </div>
+
+      <VerifyModal 
+        show={modalShow} 
+        onHide={
+          () => setModalShow(false)
+        } 
+      />
     
       <Row className="pt-2 mb-3 block-example border border-dark">
         <Col>
