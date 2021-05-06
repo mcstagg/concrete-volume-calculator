@@ -537,7 +537,8 @@ const App = () => {
         show={modalShow} 
         onHide={
           () => setModalShow(false)
-        } 
+        }
+        entries={entries} 
       />
     
       <Row className="pt-2 mb-3 block-example border border-dark">
