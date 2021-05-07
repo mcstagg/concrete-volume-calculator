@@ -87,13 +87,16 @@ const App = () => {
 
   // Confirmation variables
   const [orders, setOrders] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const fetchOrders = async () => {
 
     try {
+      setLoading(true);
       const data = await API.get('cvcorderapi', `/cvcorder`);
       setOrders(data.orders);
       console.log(data.orders);
+      setLoading(false);
     }
     catch (err) {
       console.error(err);
@@ -563,6 +566,7 @@ const App = () => {
       <ConfirmModal 
         show={confirmModalShow} 
         orders={orders}
+        loading={loading}
         onHide={
           () => setConfirmModalShow(false)
         }

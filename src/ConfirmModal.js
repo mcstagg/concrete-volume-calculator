@@ -7,6 +7,7 @@ import { Row, Col, Container } from 'react-bootstrap';
 const ConfirmModal = (props) => {
 
     let orders = props.orders;
+    let loading = props.loading;
 
     return (
       <BModal
@@ -27,8 +28,9 @@ const ConfirmModal = (props) => {
           
           <Row className="">
           <Col>
-          <h3 className="mb-3 pt-2 pl-1"></h3>
+          {loading && <h2>Loading...</h2>}
           {
+            !loading &&  
             orders.map((order, index) => (
               <div key={index}>
                 <p><b>{order.name}</b> {order.symbol}</p>
