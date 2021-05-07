@@ -27,13 +27,13 @@ const ConfirmModal = (props) => {
           
           <Row className="">
           <Col>
-          <h3 className="mb-3 pt-2 pl-1">Your Order Has Been Confirmed!</h3>
+          <h3 className="mb-3 pt-2 pl-1"></h3>
           {
-            // orders.map((order, index) => (
-            //   <div key={index}>
-            //     <p><b>{order.name}</b> {order.symbol}</p>
-            //   </div>
-            // ))
+            orders.map((order, index) => (
+              <div key={index}>
+                <p><b>{order.name}</b> {order.symbol}</p>
+              </div>
+            ))
           }
           </Col>
           </Row>

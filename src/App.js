@@ -86,24 +86,24 @@ const App = () => {
   }
 
   // Confirmation variables
-  // const [orders, setOrders] = useState([]);
+  const [orders, setOrders] = useState([]);
 
-  // const fetchOrders = async () => {
+  const fetchOrders = async () => {
 
-  //   try {
-  //     const data = await API.get('cvcorderapi', `/cvcorder`);
-  //     setOrders(data.orders);
-  //     console.log(data.orders);
-  //   }
-  //   catch (err) {
-  //     console.error(err);
-  //   };
-  // };
+    try {
+      const data = await API.get('cvcorderapi', `/cvcorder`);
+      setOrders(data.orders);
+      console.log(data.orders);
+    }
+    catch (err) {
+      console.error(err);
+    };
+  };
 
   // Call fetchOrders function when component loads
-  //useEffect(() => {
+  // useEffect(() => {
   //  fetchOrders()
-  //}, [])
+  // }, [])
 
   const showVerifyModal = () => {
     setModalShow(true);
@@ -111,7 +111,9 @@ const App = () => {
 
   const onConfirmClick = () => {
     setModalShow(false);
+    fetchOrders();
     setConfirmModalShow(true);
+    
   }
 
   const onCloseClick = () => {
@@ -554,11 +556,13 @@ const App = () => {
           () => setModalShow(false)
         }
         entries={entries}
+        orders={orders}
         onConfirmClick={onConfirmClick}
       />
 
       <ConfirmModal 
         show={confirmModalShow} 
+        orders={orders}
         onHide={
           () => setConfirmModalShow(false)
         }

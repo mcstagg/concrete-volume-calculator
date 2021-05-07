@@ -38,25 +38,6 @@ const VerifyModal = (props) => {
       specialInstructions = item.specialInstructions;
     });
 
-    const [orders, setOrders] = useState([]);
-
-    const fetchOrders = async () => {
-
-      try {
-        const data = await API.get('cvcorderapi', `/cvcorder`);
-        setOrders(data.orders);
-        console.log(data.orders);
-      }
-      catch (err) {
-        console.error(err);
-      };
-    };
-
-    // Call fetchOrders function when component loads
-    //useEffect(() => {
-    //  fetchOrders()
-    //}, []);
-
     return (
       <BModal
         {...props}
