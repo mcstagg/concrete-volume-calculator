@@ -43,7 +43,7 @@ const ConfirmModal = (props) => {
           </Container>
         </BModal.Body>
         <BModal.Footer>
-          <Button onClick={props.onHide}>Close</Button>
+          <Button onClick={props.onCloseClick}>Close</Button>
         </BModal.Footer>
       </BModal>
     );

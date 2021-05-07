@@ -85,33 +85,38 @@ const App = () => {
     );
   }
 
+  // Confirmation variables
+  // const [orders, setOrders] = useState([]);
+
+  // const fetchOrders = async () => {
+
+  //   try {
+  //     const data = await API.get('cvcorderapi', `/cvcorder`);
+  //     setOrders(data.orders);
+  //     console.log(data.orders);
+  //   }
+  //   catch (err) {
+  //     console.error(err);
+  //   };
+  // };
+
+  // Call fetchOrders function when component loads
+  //useEffect(() => {
+  //  fetchOrders()
+  //}, [])
+
   const showVerifyModal = () => {
     setModalShow(true);
   }
 
-  const showConfimationModal = () => {
+  const onConfirmClick = () => {
+    setModalShow(false);
     setConfirmModalShow(true);
   }
 
-  // Confirmation variables
-  const [orders, setOrders] = useState([]);
-
-  const fetchOrders = async () => {
-
-    try {
-      const data = await API.get('cvcorderapi', `/cvcorder`);
-      setOrders(data.orders);
-      console.log(data.orders);
-    }
-    catch (err) {
-      console.error(err);
-    };
-  };
-
-  // Call fetchOrders function when component loads
-  useEffect(() => {
-    fetchOrders()
-  }, [])
+  const onCloseClick = () => {
+    setConfirmModalShow(false);
+  }
 
   return (
 
@@ -549,9 +554,7 @@ const App = () => {
           () => setModalShow(false)
         }
         entries={entries}
-        onConfirm={
-          () => setConfirmModalShow(true)
-        }
+        onConfirmClick={onConfirmClick}
       />
 
       <ConfirmModal 
@@ -559,18 +562,19 @@ const App = () => {
         onHide={
           () => setConfirmModalShow(false)
         }
+        onCloseClick={onCloseClick}
       />
     
-      <Row className="pt-2 mb-3 block-example border border-dark">
+      <Row className="">
         <Col>
-          <h3 className="mb-3">Your Order Has Been Confirmed!</h3>
-          {
+          {/* <h3 className="mb-3">Your Order Has Been Confirmed!</h3> */}
+          {/* {
             orders.map((order, index) => (
               <div key={index}>
                 <p><b>{order.name}</b> {order.symbol}</p>
               </div>
             ))
-          }
+          } */}
         </Col>
       </Row>
       </Container>

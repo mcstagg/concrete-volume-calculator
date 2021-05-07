@@ -1,4 +1,4 @@
-import { react, useState } from 'react';
+import { react, useState, useEffect } from 'react';
 import { API } from 'aws-amplify';
 import BModal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
@@ -52,6 +52,11 @@ const VerifyModal = (props) => {
       };
     };
 
+    // Call fetchOrders function when component loads
+    //useEffect(() => {
+    //  fetchOrders()
+    //}, []);
+
     return (
       <BModal
         {...props}
@@ -90,7 +95,7 @@ const VerifyModal = (props) => {
         </BModal.Body>
         <BModal.Footer>
           <Button onClick={props.onHide}>Edit Order</Button>
-          <Button onClick={props.onHide, props.onConfirm}>Confirm Order</Button>
+          <Button onClick={props.onConfirmClick}>Confirm Order</Button>
         </BModal.Footer>
       </BModal>
     );
