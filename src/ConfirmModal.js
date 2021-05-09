@@ -33,7 +33,18 @@ const ConfirmModal = (props) => {
             !loading &&  
             orders.map((order, index) => (
               <div key={index}>
-                <p><b>{order.name}</b> {order.symbol}</p>
+                <p>{index} <b>Date: </b>{order.date}</p>
+                <p>{index} <b>Customer: </b>{order.customer}</p>
+                <p>{index} <b>Type of Pour: </b>{order.typeOfPour}</p>
+                <p>{index} <b>Cubic Yards: </b>{order.cubicYards}</p>
+                <p>{index} <b>Chloride: </b>{order.chloride}</p>
+                <p>{index} <b>Fiber Mesh: </b>{order.fiberMesh}</p>
+                <p>{index} <b>Temperature: </b>{order.temperature}</p>
+                <p>{index} <b>Slump: </b>{order.slump}</p>
+                <p>{index} <b>Water Content: </b>{order.waterContent}</p>
+                <p>{index} <b>Date of Pour: </b>{order.dateOfPour}</p>
+                <p>{index} <b>Address: </b>{order.address}</p>
+                <p>{index} <b>Special Instructions: </b>{order.specialInstructions}</p>
               </div>
             ))
           }

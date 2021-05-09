@@ -83,7 +83,7 @@ const App = () => {
         specialInstructions: specialInstructions
       }
     );
-  }
+  };
 
   // Confirmation variables
   const [orders, setOrders] = useState([]);
@@ -117,17 +117,14 @@ const App = () => {
     try {
       setLoading(true);
       const data = await API.get('cvcorderapi', `/cvcorder`);
-      let list = data.orders[0];
-      //let all = list.map();
-      let stuff = Object.keys(data.orders[0]);
-      let things = Object.values(data.orders[0]);
-      setOrders(
-        orders.concat({
-          stuff: things
-        })
-      );
-      console.log("Orders Keys: " + stuff);
-      console.log("Orders Values: " + things);
+      let list = Object.entries(data.orders);
+
+      list.map((order, index) => {
+        setOrders(
+          orders.concat(order[1]) 
+        );
+      });
+
       setLoading(false);
     }
     catch (err) {
