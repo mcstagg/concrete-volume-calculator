@@ -10,12 +10,12 @@ import { Row, Col, Container, Form, Button } from 'react-bootstrap';
 const App = () => {
 
   // Dimension variables
-  const [width, setWidth] = useState();
-  const [height, setHeight] = useState();
-  const [length, setLength] = useState();
+  const [width, setWidth] = useState("");
+  const [height, setHeight] = useState("");
+  const [length, setLength] = useState("");
   const [cubicYards, setCubicYards] = useState(0);
   const [totalCubicYards, setTotalCubicYards] = useState(0);
-  const [displayCubicYards, setDisplayCubicYards] = useState();
+  const [displayCubicYards, setDisplayCubicYards] = useState(0);
   const [entries, setEntries] = useState([]);
 
   // Dimension and display logic
@@ -49,26 +49,26 @@ const App = () => {
   }
 
   // Order form variables
-  const [date, setDate] = useState();
-  const [customer, setCustomer] = useState();
-  const [typeOfPour, setTypeOfPour] = useState();
-  const [chloride, setChloride] = useState();
-  const [fiberMesh, setFiberMesh] = useState();
-  const [temperature, setTemperature] = useState();
-  const [slump, setSlump] = useState();
-  const [waterContent, setWaterContent] = useState();
-  const [dateOfPour, setDateOfPour] = useState();
-  const [address, setAddress] = useState();
-  const [specialInstructions, setSpecialInstructions] = useState();
-  const [placedOrder, setPlacedOrder] = useState([]);
+  const [date, setDate] = useState("");
+  const [customer, setCustomer] = useState("");
+  const [typeOfPour, setTypeOfPour] = useState("");
+  const [chloride, setChloride] = useState("");
+  const [fiberMesh, setFiberMesh] = useState("");
+  const [temperature, setTemperature] = useState("");
+  const [slump, setSlump] = useState("");
+  const [waterContent, setWaterContent] = useState("");
+  const [dateOfPour, setDateOfPour] = useState("");
+  const [address, setAddress] = useState("");
+  const [specialInstructions, setSpecialInstructions] = useState("");
+  const [placedOrder, setPlacedOrder] = useState({});
   const [modalShow, setModalShow] = useState(false);
   const [confirmModalShow, setConfirmModalShow] = useState(false);
 
   // Order and display logic
   const addOrder = () => {
 
-    setEntries(
-      placedOrder.concat({
+    setPlacedOrder(
+      {
         date: date,
         customer: customer,
         typeOfPour: typeOfPour,
@@ -81,7 +81,7 @@ const App = () => {
         dateOfPour: dateOfPour,
         address: address,
         specialInstructions: specialInstructions
-      })
+      }
     );
   }
 
@@ -89,13 +89,45 @@ const App = () => {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(false);
 
+  const sendOrders = async () => {
+
+    const requestOptions = {
+      headers: { 
+        'Content-Type': 'application/json'
+      },
+      body: placedOrder
+    };
+
+    try {
+      const data = await API.post('cvcorderapi', `/cvcorder`, requestOptions);
+      console.log(data);
+    } 
+    catch (err) {
+      console.error(err);
+    };
+  };
+
+  // Call fetchOrders function when component loads
+  useEffect(() => {
+    // sendOrders()
+  }, [])
+
   const fetchOrders = async () => {
 
     try {
       setLoading(true);
       const data = await API.get('cvcorderapi', `/cvcorder`);
-      setOrders(data.orders);
-      console.log(data.orders);
+      let list = data.orders[0];
+      //let all = list.map();
+      let stuff = Object.keys(data.orders[0]);
+      let things = Object.values(data.orders[0]);
+      setOrders(
+        orders.concat({
+          stuff: things
+        })
+      );
+      console.log("Orders Keys: " + stuff);
+      console.log("Orders Values: " + things);
       setLoading(false);
     }
     catch (err) {
@@ -103,17 +135,31 @@ const App = () => {
     };
   };
 
-  // Call fetchOrders function when component loads
-  // useEffect(() => {
-  //  fetchOrders()
-  // }, [])
-
   const showVerifyModal = () => {
     setModalShow(true);
   }
 
-  const onConfirmClick = () => {
+  const onConfirmClick = async () => {
+
+    setPlacedOrder(
+      {
+        date: date,
+        customer: customer,
+        typeOfPour: typeOfPour,
+        cubicYards: cubicYards,
+        chloride: chloride,
+        fiberMesh: fiberMesh,
+        temperature: temperature,
+        slump: slump,
+        waterContent: waterContent,
+        dateOfPour: dateOfPour,
+        address: address,
+        specialInstructions: specialInstructions
+      }
+    );
+
     setModalShow(false);
+    await sendOrders();
     fetchOrders();
     setConfirmModalShow(true);
     
@@ -290,9 +336,6 @@ const App = () => {
               onClick={
                 () => {
                   addDimension(width, height, length);
-                  setWidth(' ');
-                  setHeight(' ');
-                  setLength(' ');
                 }
               }
             >
@@ -558,7 +601,7 @@ const App = () => {
         onHide={
           () => setModalShow(false)
         }
-        entries={entries}
+        placedOrder={placedOrder}
         orders={orders}
         onConfirmClick={onConfirmClick}
       />

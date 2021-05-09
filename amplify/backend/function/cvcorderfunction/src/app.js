@@ -16,32 +16,27 @@ app.use(bodyParser.json())
 app.use(awsServerlessExpressMiddleware.eventContext())
 
 // Enable CORS for all methods
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*")
-  res.header("Access-Control-Allow-Headers", "*")
-  next()
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Credentials", true);
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, DELETE, OPTIONS");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "x-www-form-urlencoded, Origin, X-Requested-With, Content-Type, Accept, Authorization"
+  );
+  next();
 });
 
+var orders = [];
 
 /**********************
  * Example get method *
  **********************/
 
  app.get('/cvcorder', function(req, res) {
-  const orders = [
-    { name: 'Order Status:', symbol: 'Confirmed' },
-    { name: 'Date:', symbol: '04/27/2021' },
-    { name: 'Customer:', symbol: 'Stagg Builders' },
-    { name: 'Type of Pour:', symbol: 'Wall' },
-    { name: 'Cubic Yards:', symbol: '24.7' },
-    { name: 'Cholride:', symbol: '0 %' },
-    { name: 'Fiber Mesh:', symbol: 'No' },
-    { name: 'Temperature:', symbol: '70 oF' },
-    { name: 'Slump:', symbol: '5 in' },
-    { name: 'Water Content:', symbol: '3' },
-    { name: 'Address:', symbol: '171 Illinois Ave, Green Lake WI, 54941' },
-    { name: 'Special Instructions:', symbol: 'Come in from the front of the site' }
-  ]
+
+  console.log("GET ORDERS:" + orders)
+
   res.json({
     orders
   })
@@ -60,6 +55,23 @@ app.get('/item/*', function(req, res) {
 /****************************
 * Example post method *
 ****************************/
+
+app.post('/cvcorder', function(req, res) {
+
+  const { body } = req
+  const { event } = req.apiGateway
+
+  try {
+    const order = body;
+    orders.push(order);
+    console.log("POST ORDER:" + order);
+
+    res.json({ success: 'post successful!', orders: orders});
+
+  } catch (err) {
+    res.json({ error: err })
+  }
+});
 
 app.post('/item', function(req, res) {
   // Add your code here

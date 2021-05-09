@@ -6,37 +6,20 @@ import { Row, Col, Container } from 'react-bootstrap';
 
 const VerifyModal = (props) => {
 
-    let order = props.entries;
-    console.log(order);
+    let order = props.placedOrder;
 
-    let date;
-    let customer;
-    let typeOfPour;
-    let cubicYards;
-    let chloride;
-    let fiberMesh;
-    let temperature;
-    let slump;
-    let waterContent;
-    let dateOfPour;
-    let address;
-    let specialInstructions;
-
-    order.map(item => {
-      console.log(item.date);
-      date = item.date;
-      customer = item.customer;
-      typeOfPour = item.typeOfPour;
-      cubicYards = item.cubicYards;
-      chloride = item.chloride;
-      fiberMesh = item.fiberMesh;
-      temperature = item.temperature;
-      slump = item.slump;
-      waterContent = item.waterContent;
-      dateOfPour = item.dateOfPour;
-      address = item.address;
-      specialInstructions = item.specialInstructions;
-    });
+    let date = order.date;
+    let customer = order.customer;
+    let typeOfPour = order.typeOfPour;
+    let cubicYards = order.cubicYards;
+    let chloride = order.chloride;
+    let fiberMesh = order.fiberMesh;
+    let temperature = order.temperature;
+    let slump = order.slump;
+    let waterContent = order.waterContent;
+    let dateOfPour = order.dateOfPour;
+    let address = order.address;
+    let specialInstructions = order.specialInstructions;
 
     return (
       <BModal

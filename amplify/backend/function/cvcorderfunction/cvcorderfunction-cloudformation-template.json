@@ -69,7 +69,7 @@
         "Timeout": "25",
         "Code": {
           "S3Bucket": "amplify-cvcorderapp-local-162703-deployment",
-          "S3Key": "amplify-builds/cvcorderfunction-73516877317761496c56-build.zip"
+          "S3Key": "amplify-builds/cvcorderfunction-3273636f416278425a68-build.zip"
         }
       }
     },
