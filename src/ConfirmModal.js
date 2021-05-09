@@ -4,10 +4,9 @@ import BModal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import { Row, Col, Container } from 'react-bootstrap';
 
-const ConfirmModal = (props) => {
+const ConfirmModal = ({orders, loading, onCloseClick, ...props}) => {
 
-    let orders = props.orders;
-    let loading = props.loading;
+    let order = orders[orders.length - 1];
 
     return (
       <BModal
@@ -30,23 +29,23 @@ const ConfirmModal = (props) => {
           <Col>
           {loading && <h2>Loading...</h2>}
           {
-            !loading &&  
-            orders.map((order, index) => (
-              <div key={index}>
-                <p>{index} <b>Date: </b>{order.date}</p>
-                <p>{index} <b>Customer: </b>{order.customer}</p>
-                <p>{index} <b>Type of Pour: </b>{order.typeOfPour}</p>
-                <p>{index} <b>Cubic Yards: </b>{order.cubicYards}</p>
-                <p>{index} <b>Chloride: </b>{order.chloride}</p>
-                <p>{index} <b>Fiber Mesh: </b>{order.fiberMesh}</p>
-                <p>{index} <b>Temperature: </b>{order.temperature}</p>
-                <p>{index} <b>Slump: </b>{order.slump}</p>
-                <p>{index} <b>Water Content: </b>{order.waterContent}</p>
-                <p>{index} <b>Date of Pour: </b>{order.dateOfPour}</p>
-                <p>{index} <b>Address: </b>{order.address}</p>
-                <p>{index} <b>Special Instructions: </b>{order.specialInstructions}</p>
+            !loading && order && 
+            (
+              <div>
+                <p><b>Date: </b>{order.date}</p>
+                <p><b>Customer: </b>{order.customer}</p>
+                <p><b>Type of Pour: </b>{order.typeOfPour}</p>
+                <p><b>Cubic Yards: </b>{order.cubicYards}</p>
+                <p><b>Chloride: </b>{order.chloride}</p>
+                <p><b>Fiber Mesh: </b>{order.fiberMesh}</p>
+                <p><b>Temperature: </b>{order.temperature}</p>
+                <p><b>Slump: </b>{order.slump}</p>
+                <p><b>Water Content: </b>{order.waterContent}</p>
+                <p><b>Date of Pour: </b>{order.dateOfPour}</p>
+                <p><b>Address: </b>{order.address}</p>
+                <p><b>Special Instructions: </b>{order.specialInstructions}</p>
               </div>
-            ))
+            )
           }
           </Col>
           </Row>
@@ -56,7 +55,7 @@ const ConfirmModal = (props) => {
           </Container>
         </BModal.Body>
         <BModal.Footer>
-          <Button onClick={props.onCloseClick}>Close</Button>
+          <Button onClick={onCloseClick}>Close</Button>
         </BModal.Footer>
       </BModal>
     );

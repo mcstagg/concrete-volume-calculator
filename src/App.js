@@ -18,6 +18,27 @@ const App = () => {
   const [displayCubicYards, setDisplayCubicYards] = useState(0);
   const [entries, setEntries] = useState([]);
 
+    // Order form variables
+    const [date, setDate] = useState("");
+    const [customer, setCustomer] = useState("");
+    const [typeOfPour, setTypeOfPour] = useState("");
+    const [chloride, setChloride] = useState("");
+    const [fiberMesh, setFiberMesh] = useState("");
+    const [temperature, setTemperature] = useState("");
+    const [slump, setSlump] = useState("");
+    const [waterContent, setWaterContent] = useState("");
+    const [dateOfPour, setDateOfPour] = useState("");
+    const [address, setAddress] = useState("");
+    const [specialInstructions, setSpecialInstructions] = useState("");
+    const [placedOrder, setPlacedOrder] = useState({});
+    const [modalShow, setModalShow] = useState(false);
+    const [confirmModalShow, setConfirmModalShow] = useState(false);
+
+  // Confirmation variables
+  const [orders, setOrders] = useState([]);
+  const [loading, setLoading] = useState(false);
+  let order;
+
   // Dimension and display logic
   // Handles the add dimension event upon add new dimension button click
   const addDimension = (width, height, length) => {
@@ -48,22 +69,6 @@ const App = () => {
     setDisplayCubicYards(fixedVolume); 
   }
 
-  // Order form variables
-  const [date, setDate] = useState("");
-  const [customer, setCustomer] = useState("");
-  const [typeOfPour, setTypeOfPour] = useState("");
-  const [chloride, setChloride] = useState("");
-  const [fiberMesh, setFiberMesh] = useState("");
-  const [temperature, setTemperature] = useState("");
-  const [slump, setSlump] = useState("");
-  const [waterContent, setWaterContent] = useState("");
-  const [dateOfPour, setDateOfPour] = useState("");
-  const [address, setAddress] = useState("");
-  const [specialInstructions, setSpecialInstructions] = useState("");
-  const [placedOrder, setPlacedOrder] = useState({});
-  const [modalShow, setModalShow] = useState(false);
-  const [confirmModalShow, setConfirmModalShow] = useState(false);
-
   // Order and display logic
   const addOrder = () => {
 
@@ -85,9 +90,7 @@ const App = () => {
     );
   };
 
-  // Confirmation variables
-  const [orders, setOrders] = useState([]);
-  const [loading, setLoading] = useState(false);
+  
 
   const sendOrders = async () => {
 
@@ -117,14 +120,7 @@ const App = () => {
     try {
       setLoading(true);
       const data = await API.get('cvcorderapi', `/cvcorder`);
-      let list = Object.entries(data.orders);
-
-      list.map((order, index) => {
-        setOrders(
-          orders.concat(order[1]) 
-        );
-      });
-
+      setOrders(data.orders);
       setLoading(false);
     }
     catch (err) {
@@ -137,7 +133,6 @@ const App = () => {
   }
 
   const onConfirmClick = async () => {
-
     setPlacedOrder(
       {
         date: date,
@@ -157,9 +152,8 @@ const App = () => {
 
     setModalShow(false);
     await sendOrders();
-    fetchOrders();
+    await fetchOrders();
     setConfirmModalShow(true);
-    
   }
 
   const onCloseClick = () => {

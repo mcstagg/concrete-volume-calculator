@@ -34,12 +34,9 @@ var orders = [];
  **********************/
 
  app.get('/cvcorder', function(req, res) {
-
-  console.log("GET ORDERS:" + orders)
-
   res.json({
     orders
-  })
+  });
 })
 
 app.get('/items', function(req, res) {
@@ -62,9 +59,9 @@ app.post('/cvcorder', function(req, res) {
   const { event } = req.apiGateway
 
   try {
-    const order = body;
+    let order = body;
     orders.push(order);
-    console.log("POST ORDER:" + order);
+    //console.log("POST ORDER:" + order);
 
     res.json({ success: 'post successful!', orders: orders});
 

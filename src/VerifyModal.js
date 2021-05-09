@@ -4,9 +4,9 @@ import BModal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import { Row, Col, Container } from 'react-bootstrap';
 
-const VerifyModal = (props) => {
+const VerifyModal = ({placedOrder, onConfirmClick, ...props}) => {
 
-    let order = props.placedOrder;
+    let order = placedOrder;
 
     let date = order.date;
     let customer = order.customer;
@@ -59,7 +59,7 @@ const VerifyModal = (props) => {
         </BModal.Body>
         <BModal.Footer>
           <Button onClick={props.onHide}>Edit Order</Button>
-          <Button onClick={props.onConfirmClick}>Confirm Order</Button>
+          <Button onClick={onConfirmClick}>Confirm Order</Button>
         </BModal.Footer>
       </BModal>
     );
