@@ -72,7 +72,7 @@ const App = () => {
         date: date,
         customer: customer,
         typeOfPour: typeOfPour,
-        cubicYards: cubicYards,
+        cubicYards: displayCubicYards,
         chloride: chloride,
         fiberMesh: fiberMesh,
         temperature: temperature,
@@ -146,7 +146,7 @@ const App = () => {
         date: date,
         customer: customer,
         typeOfPour: typeOfPour,
-        cubicYards: cubicYards,
+        cubicYards: displayCubicYards,
         chloride: chloride,
         fiberMesh: fiberMesh,
         temperature: temperature,
@@ -173,7 +173,7 @@ const App = () => {
 
     <>
       <Container>
-      <Row className="mb-2">
+      <Row className="mb-2 mt-1">
         <Col>
           <img 
             src={truck} 
@@ -191,7 +191,7 @@ const App = () => {
         <h4 className="text-center">
           <i>Enter Your Details Below:</i>
         </h4>
-        <Row>
+        <Row className="pt-1">
         <Col>
           <input 
             type="radio" 
@@ -265,7 +265,7 @@ const App = () => {
       <div>
           <h4>New Dimension:</h4>
           <Row 
-            className="mb-0 pr-2 pt-3 block-example border border-dark text-center"
+            className="mb-0 pr-2 pt-2 block-example border border-dark text-center"
           >
             <Col className="mb-0">
               <Form.Group className="mb-0">
@@ -328,29 +328,29 @@ const App = () => {
             </ Col>
             <h5 className="pt-5">ft.</h5>
           </Row>
-          <Row className="float-right">
-            <Button 
-              variant="primary" 
-              size="m" 
-              className="mt-2 pl-4 pr-4"
-              onClick={
-                () => {
-                  addDimension(width, height, length);
-                }
-              }
-            >
-              Enter New Dimension
-            </Button>
-          </Row>
       </div>
 
-      <Row className="mt-2 mb-2">
-        <h4>Entries:</h4>
-      </Row>
-      <Row 
-        className="pt-3 pb-3 block-example border border-dark"
-      >
+      <Row className="">
         <Col>
+          <h4 className="mt-3">Entries:</h4>
+        </Col>
+        <Col className="pr-0">
+          <Button 
+            variant="primary" 
+            size="m" 
+            className="float-right mt-2 mb-2"
+            onClick={
+              () => {
+                addDimension(width, height, length);
+              }
+            }
+          >
+            Enter New Dimension
+          </Button>
+        </Col>
+      </Row>
+      <Row className="block-example border border-dark">
+        <Col className="mb-3 mt-3">
           {
             entries.map(
               (entry, index) => (
@@ -384,7 +384,7 @@ const App = () => {
       </Row>
 
       <div className="">
-      <h4 className="mb-3">Order Form:</h4>
+      <h4 className="mb-2">Order Form:</h4>
       <Row className="pt-3 pb-1 mb-3 block-example border border-dark">
         <Col>
           <Form.Group>
@@ -446,7 +446,7 @@ const App = () => {
                 placeholder="0.00"
                 value={displayCubicYards}
                 onChange={
-                  e => setTotalCubicYards(e.target.value)
+                  e => setDisplayCubicYards(e.target.value)
                 }
               />
             </Col> 
