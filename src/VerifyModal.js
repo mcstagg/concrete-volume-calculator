@@ -8,7 +8,7 @@ const VerifyModal = ({placedOrder, onConfirmClick, ...props}) => {
 
     let order = placedOrder;
 
-    let date = order.date;
+    let orderDate = order.orderDate;
     let dateOfPour = order.dateOfPour;
     let customer = order.customer;
     let time = order.timeOfPour;
@@ -39,7 +39,7 @@ const VerifyModal = ({placedOrder, onConfirmClick, ...props}) => {
           <Col className="block-example border border-dark pl-3 pt-2">
           {
             <>
-            <p><b>OrderDate: </b>{date}</p>
+            <p><b>OrderDate: </b>{orderDate}</p>
             <p><b>Date of Pour: </b>{dateOfPour}</p>
             <p><b>Customer: </b>{customer}</p>
             <p><b>Time of Pour: </b>{time}</p>

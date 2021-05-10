@@ -30,10 +30,12 @@ const ConfirmModal = ({orders, loading, onCloseClick, ...props}) => {
             !loading && order && 
             (
               <div>
-                <p><b>Order Date: </b>{order.date}</p>
+                <p><b>Order Status: </b>Confirmed!</p>
+                <p><b>Order Date: </b>{order.orderDate}</p>
                 <p><b>Date of Pour: </b>{order.dateOfPour}</p>
                 <p><b>Customer: </b>{order.customer}</p>
-                <p><b>TimeOfPour: </b>{order.timeOfPour}</p>
+                <p><b>Driver Name: </b>John</p>
+                <p><b>Time of Pour: </b>{order.timeOfPour}</p>
                 <p><b>Cubic Yards: </b>{order.cubicYards}</p>
                 <p><b>Type of Pour: </b>{order.typeOfPour}</p>
                 <p><b>Temperature: </b>{order.temperature}</p>

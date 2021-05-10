@@ -19,15 +19,15 @@ const App = () => {
   const [entries, setEntries] = useState([]);
 
   // Order form variables
-  const [date, setDate] = useState("");
+  const [orderDate, setOrderDate] = useState("");
   const [dateOfPour, setDateOfPour] = useState("");
   const [customer, setCustomer] = useState("");
   const [timeOfPour, setTimeOfPour] = useState("");
   const [typeOfPour, setTypeOfPour] = useState("");
-  const [temperature, setTemperature] = useState("");
-  const [slump, setSlump] = useState("");
-  const [fiberMesh, setFiberMesh] = useState("");
-  const [chloride, setChloride] = useState("");
+  const [temperature, setTemperature] = useState("60");
+  const [slump, setSlump] = useState("1 in");
+  const [fiberMesh, setFiberMesh] = useState("No");
+  const [chloride, setChloride] = useState("0%");
   const [address, setAddress] = useState("");
   const [specialInstructions, setSpecialInstructions] = useState("");
   const [placedOrder, setPlacedOrder] = useState({});
@@ -61,6 +61,12 @@ const App = () => {
     );
   };
 
+  const clearDimensions = () => {
+    setEntries(
+      entries.concat({})
+    )
+  }
+
   const calculateTotalCubicYards = (volume) => {
     let total = totalCubicYards;
     let totalVolume = (total += volume);
@@ -74,10 +80,10 @@ const App = () => {
 
     setPlacedOrder(
       {
-        date: date,
+        orderDate: orderDate,
         dateOfPour: dateOfPour,
         customer: customer,
-        time: timeOfPour,
+        timeOfPour: timeOfPour,
         cubicYards: displayCubicYards,
         typeOfPour: typeOfPour,
         temperature: temperature,
@@ -90,8 +96,6 @@ const App = () => {
       }
     );
   };
-
-  
 
   const sendOrders = async () => {
 
@@ -136,10 +140,10 @@ const App = () => {
   const onConfirmClick = async () => {
     setPlacedOrder(
       {
-        date: date,
+        orderDate: orderDate,
         dateOfPour: dateOfPour,
         customer: customer,
-        time: timeOfPour,
+        timeOfPour: timeOfPour,
         cubicYards: displayCubicYards,
         typeOfPour: typeOfPour,
         temperature: temperature,
@@ -258,7 +262,7 @@ const App = () => {
       <div>
           <h4>New Dimension:</h4>
           <Row 
-            className="mb-0 pr-2 pt-2 block-example border border-dark text-center"
+            className="mb-0 pr-2 pt-2 pb-3 block-example border border-dark text-center"
           >
             <Col className="mb-0">
               <Form.Group className="mb-0">
@@ -266,7 +270,7 @@ const App = () => {
                   htmlFor="width" 
                   className="pr-2"
                 >
-                  Width
+                  <b>Width (in.)</b>
                 </Form.Label>
                 <Form.Control 
                   type="text" 
@@ -279,14 +283,13 @@ const App = () => {
                 />
               </Form.Group>
             </Col>
-            <h5 className="pt-5">in.</h5>
             <Col className="mb-0">
               <Form.Group className="mb-0">
                 <Form.Label 
                   htmlFor="height" 
                   className="pr-2"
                 >
-                  Height
+                  <b>Height (ft.)</b>
                 </Form.Label>
                 <Form.Control 
                   type="text" 
@@ -299,14 +302,13 @@ const App = () => {
                 />
               </Form.Group>
             </ Col>
-            <h5 className="pt-5">ft.</h5>
             <Col className="mb-0">
               <Form.Group className="mb-0">
                 <Form.Label 
                   htmlFor="length" 
                   className="pr-2"
                 >
-                  Length
+                  <b>Length (ft.)</b>
                 </Form.Label>
                 <Form.Control 
                   type="text" 
@@ -319,7 +321,6 @@ const App = () => {
                 />
               </Form.Group>
             </ Col>
-            <h5 className="pt-5">ft.</h5>
           </Row>
       </div>
 
@@ -377,7 +378,12 @@ const App = () => {
       </Row>
 
       <div className="">
-      <h4 className="mb-2">Order Form:</h4>
+      <Row>
+        <Col>
+          <h4 className="mb-2">Order Form:</h4>
+        </Col>
+      </Row>
+
       <Row className="pt-3 pb-1 mb-3 block-example border border-dark">
         <Col>
           <Form.Group>
@@ -393,7 +399,7 @@ const App = () => {
                 name="dates" 
                 placeholder="MM/DD/YY"
                 onChange={
-                  e => setDate(e.target.value)
+                  e => setOrderDate(e.target.value)
                 }
               />
             </Col>
@@ -434,7 +440,7 @@ const App = () => {
               <Form.Control 
                 type="time" 
                 id="time" 
-                name="pourDate" 
+                name="timeOfPour" 
                 placeholder="12:00pm"
                 onChange={
                   e => setTimeOfPour(e.target.value)
@@ -484,7 +490,7 @@ const App = () => {
               id="temp" 
               name="temperature" 
               placeholder="temp"
-              onChange={
+              onInput={
                 e => setTemperature(e.target.value)
               } 
             >
