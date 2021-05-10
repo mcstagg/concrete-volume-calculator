@@ -18,21 +18,21 @@ const App = () => {
   const [displayCubicYards, setDisplayCubicYards] = useState(0);
   const [entries, setEntries] = useState([]);
 
-    // Order form variables
-    const [date, setDate] = useState("");
-    const [customer, setCustomer] = useState("");
-    const [typeOfPour, setTypeOfPour] = useState("");
-    const [chloride, setChloride] = useState("");
-    const [fiberMesh, setFiberMesh] = useState("");
-    const [temperature, setTemperature] = useState("");
-    const [slump, setSlump] = useState("");
-    const [waterContent, setWaterContent] = useState("");
-    const [dateOfPour, setDateOfPour] = useState("");
-    const [address, setAddress] = useState("");
-    const [specialInstructions, setSpecialInstructions] = useState("");
-    const [placedOrder, setPlacedOrder] = useState({});
-    const [modalShow, setModalShow] = useState(false);
-    const [confirmModalShow, setConfirmModalShow] = useState(false);
+  // Order form variables
+  const [date, setDate] = useState("");
+  const [dateOfPour, setDateOfPour] = useState("");
+  const [customer, setCustomer] = useState("");
+  const [timeOfPour, setTimeOfPour] = useState("");
+  const [typeOfPour, setTypeOfPour] = useState("");
+  const [temperature, setTemperature] = useState("");
+  const [slump, setSlump] = useState("");
+  const [fiberMesh, setFiberMesh] = useState("");
+  const [chloride, setChloride] = useState("");
+  const [address, setAddress] = useState("");
+  const [specialInstructions, setSpecialInstructions] = useState("");
+  const [placedOrder, setPlacedOrder] = useState({});
+  const [modalShow, setModalShow] = useState(false);
+  const [confirmModalShow, setConfirmModalShow] = useState(false);
 
   // Confirmation variables
   const [orders, setOrders] = useState([]);
@@ -75,14 +75,15 @@ const App = () => {
     setPlacedOrder(
       {
         date: date,
+        dateOfPour: dateOfPour,
         customer: customer,
-        typeOfPour: typeOfPour,
+        time: timeOfPour,
         cubicYards: displayCubicYards,
-        chloride: chloride,
-        fiberMesh: fiberMesh,
+        typeOfPour: typeOfPour,
         temperature: temperature,
         slump: slump,
-        waterContent: waterContent,
+        fiberMesh: fiberMesh,
+        chloride: chloride,
         dateOfPour: dateOfPour,
         address: address,
         specialInstructions: specialInstructions
@@ -136,14 +137,15 @@ const App = () => {
     setPlacedOrder(
       {
         date: date,
+        dateOfPour: dateOfPour,
         customer: customer,
-        typeOfPour: typeOfPour,
+        time: timeOfPour,
         cubicYards: displayCubicYards,
-        chloride: chloride,
-        fiberMesh: fiberMesh,
+        typeOfPour: typeOfPour,
         temperature: temperature,
         slump: slump,
-        waterContent: waterContent,
+        fiberMesh: fiberMesh,
+        chloride: chloride,
         dateOfPour: dateOfPour,
         address: address,
         specialInstructions: specialInstructions
@@ -152,7 +154,7 @@ const App = () => {
 
     setModalShow(false);
     await sendOrders();
-    await fetchOrders();
+    fetchOrders();
     setConfirmModalShow(true);
   }
 
@@ -383,10 +385,10 @@ const App = () => {
           <Row className="mx-auto">
             <Col className="mb-0">
               <Form.Label htmlFor="date">
-                <b>Date:</b>
+                <b>Order Date:</b>
               </Form.Label>
               <Form.Control 
-                type="text" 
+                type="date" 
                 id="date" 
                 name="dates" 
                 placeholder="MM/DD/YY"
@@ -395,6 +397,22 @@ const App = () => {
                 }
               />
             </Col>
+            <Col> 
+              <Form.Label htmlFor="pourDate">
+                <b>Date of Pour:</b>
+              </Form.Label>
+              <Form.Control 
+                type="date" 
+                id="pour" 
+                name="pourDate" 
+                placeholder="MM/DD/YY"
+                onChange={
+                  e => setDateOfPour(e.target.value)
+                } 
+              />
+            </Col>
+          </Row>
+          <Row className="mx-auto">
             <Col>
               <Form.Label htmlFor="customer">
                 <b>Customer:</b>
@@ -409,8 +427,37 @@ const App = () => {
                 } 
               />
             </Col>
+            <Col> 
+              <Form.Label htmlFor="timeOfPour">
+                <b>Time of Pour:</b>
+              </Form.Label>
+              <Form.Control 
+                type="time" 
+                id="time" 
+                name="pourDate" 
+                placeholder="12:00pm"
+                onChange={
+                  e => setTimeOfPour(e.target.value)
+                } 
+              />
+            </Col>
           </Row>
           <Row className="mx-auto">
+          <Col>
+              <Form.Label htmlFor="yards">
+                <b>Cubic Yards:</b>
+              </Form.Label>
+              <Form.Control 
+                type="text" 
+                id="yards" 
+                name="cubicyards" 
+                placeholder="0.00"
+                value={displayCubicYards}
+                onChange={
+                  e => setDisplayCubicYards(e.target.value)
+                }
+              />
+            </Col> 
             <Col>
               <Form.Label htmlFor="type">
                 <b>Type of Pour:</b>
@@ -426,111 +473,86 @@ const App = () => {
                 }
               />
             </Col>
-            <Col>
-              <Form.Label htmlFor="yards">
-                <b>Cubic Yards:</b>
-              </Form.Label>
-              <Form.Control 
-                type="text" 
-                id="yards" 
-                name="cubicyards" 
-                placeholder="0.00"
-                value={displayCubicYards}
-                onChange={
-                  e => setDisplayCubicYards(e.target.value)
-                }
-              />
-            </Col> 
-          </Row>
-          <Row className="mx-auto">
-            <Col>
-              <Form.Label htmlFor="chloride">
-                <b>Chloride:</b>
-              </Form.Label>
-              <Form.Control 
-                type="text" 
-                id="chloride" 
-                name="chloridecontent" 
-                placeholder="chloride"
-                onChange={
-                  e => setChloride(e.target.value)
-                }
-              />   
-            </Col>
-            <Col>
-              <Form.Label htmlFor="fiber">
-                <b>Fiber Mesh:</b>
-              </Form.Label>
-              <Form.Control 
-                type="text" 
-                id="fiber" 
-                name="fibermesh" 
-                placeholder="fiber mesh"
-                onChange={
-                  e => setFiberMesh(e.target.value)
-                } 
-              />
-            </Col>
           </Row>
           <Row className="mx-auto">
             <Col>
             <Form.Label htmlFor="temp">
-              <b>Temperature:</b>
+              <b>Temperature: (F)</b>
             </Form.Label>
             <Form.Control 
-              type="text" 
+              as="select" 
               id="temp" 
               name="temperature" 
               placeholder="temp"
               onChange={
                 e => setTemperature(e.target.value)
               } 
-            />
+            >
+              <option>60</option>
+              <option>65</option>
+              <option>70</option>
+              <option>75</option>
+              <option>80</option>
+            </Form.Control>
             </Col>
             <Col>
               <Form.Label htmlFor="slump">
                 <b>Slump:</b>
               </Form.Label>
               <Form.Control 
-                type="text" 
+                as="select" 
                 id="slump" 
                 name="slumpin" 
                 placeholder="slump"
                 onChange={
                   e => setSlump(e.target.value)
                 } 
-              />
+              >
+                <option>1 in</option>
+                <option>2 in</option>
+                <option>3 in</option>
+                <option>4 in</option>
+                <option>5 in</option>
+              </Form.Control>
             </Col>
           </Row> 
           <Row className="mx-auto">
             <Col>
-              <Form.Label htmlFor="water">
-                <b>Water Content:</b>
+              <Form.Label htmlFor="fiber">
+                <b>Fiber Mesh:</b>
               </Form.Label>
               <Form.Control 
-                type="text" 
-                id="water" 
-                name="h20" 
-                placeholder="water content"
+                as="select" 
+                id="fiber" 
+                name="fibermesh" 
+                placeholder="fiber mesh"
                 onChange={
-                  e => setWaterContent(e.target.value)
+                  e => setFiberMesh(e.target.value)
                 } 
-              />
+              >
+                <option>No</option>
+                <option>Yes</option>
+              </Form.Control>
             </Col>
-            <Col> 
-              <Form.Label htmlFor="pourDate">
-                <b>Date of Pour:</b>
+            <Col>
+              <Form.Label htmlFor="chloride">
+                <b>Chloride:</b>
               </Form.Label>
-              <Form.Control 
-                type="text" 
-                id="pour" 
-                name="pourDate" 
-                placeholder="date of pour"
+              <Form.Control
+                as="select"
+                id="chloride" 
+                name="chloridecontent" 
+                placeholder="chloride"
                 onChange={
-                  e => setDateOfPour(e.target.value)
-                } 
-              />
-            </Col>  
+                  e => setChloride(e.target.value)
+                }
+              > 
+                <option>0%</option>
+                <option>1%</option>
+                <option>2%</option>
+                <option>3%</option>
+              </Form.Control>   
+            </Col>
           </Row>
           <Row className="mx-auto">
             <Col>    

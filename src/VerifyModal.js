@@ -9,15 +9,15 @@ const VerifyModal = ({placedOrder, onConfirmClick, ...props}) => {
     let order = placedOrder;
 
     let date = order.date;
+    let dateOfPour = order.dateOfPour;
     let customer = order.customer;
-    let typeOfPour = order.typeOfPour;
+    let time = order.timeOfPour;
     let cubicYards = order.cubicYards;
-    let chloride = order.chloride;
-    let fiberMesh = order.fiberMesh;
+    let typeOfPour = order.typeOfPour;
     let temperature = order.temperature;
     let slump = order.slump;
-    let waterContent = order.waterContent;
-    let dateOfPour = order.dateOfPour;
+    let fiberMesh = order.fiberMesh;
+    let chloride = order.chloride;
     let address = order.address;
     let specialInstructions = order.specialInstructions;
 
@@ -39,16 +39,16 @@ const VerifyModal = ({placedOrder, onConfirmClick, ...props}) => {
           <Col className="block-example border border-dark pl-3 pt-2">
           {
             <>
-            <p><b>Date: </b>{date}</p>
+            <p><b>OrderDate: </b>{date}</p>
+            <p><b>Date of Pour: </b>{dateOfPour}</p>
             <p><b>Customer: </b>{customer}</p>
-            <p><b>Type Of Pour: </b>{typeOfPour}</p>
+            <p><b>Time of Pour: </b>{time}</p>
             <p><b>Cubic Yards: </b>{cubicYards}</p>
-            <p><b>Chloride: </b>{chloride}</p>
-            <p><b>Fiber Mesh: </b>{fiberMesh}</p>
+            <p><b>Type Of Pour: </b>{typeOfPour}</p>
             <p><b>Temperature: </b>{temperature}</p>
             <p><b>Slump: </b>{slump}</p>
-            <p><b>WaterContent: </b>{waterContent}</p>
-            <p><b>Date of Pour: </b>{dateOfPour}</p>
+            <p><b>Fiber Mesh: </b>{fiberMesh}</p>
+            <p><b>Chloride: </b>{chloride}</p>
             <p><b>Address: </b>{address}</p>
             <p><b>Special Instructions: </b>{specialInstructions}</p>
             </>

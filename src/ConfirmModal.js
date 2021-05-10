@@ -1,5 +1,3 @@
-import react from 'react';
-import { API } from 'aws-amplify';
 import BModal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import { Row, Col, Container } from 'react-bootstrap';
@@ -32,16 +30,16 @@ const ConfirmModal = ({orders, loading, onCloseClick, ...props}) => {
             !loading && order && 
             (
               <div>
-                <p><b>Date: </b>{order.date}</p>
+                <p><b>Order Date: </b>{order.date}</p>
+                <p><b>Date of Pour: </b>{order.dateOfPour}</p>
                 <p><b>Customer: </b>{order.customer}</p>
-                <p><b>Type of Pour: </b>{order.typeOfPour}</p>
+                <p><b>TimeOfPour: </b>{order.timeOfPour}</p>
                 <p><b>Cubic Yards: </b>{order.cubicYards}</p>
-                <p><b>Chloride: </b>{order.chloride}</p>
-                <p><b>Fiber Mesh: </b>{order.fiberMesh}</p>
+                <p><b>Type of Pour: </b>{order.typeOfPour}</p>
                 <p><b>Temperature: </b>{order.temperature}</p>
                 <p><b>Slump: </b>{order.slump}</p>
-                <p><b>Water Content: </b>{order.waterContent}</p>
-                <p><b>Date of Pour: </b>{order.dateOfPour}</p>
+                <p><b>Fiber Mesh: </b>{order.fiberMesh}</p>
+                <p><b>Chloride: </b>{order.chloride}</p>
                 <p><b>Address: </b>{order.address}</p>
                 <p><b>Special Instructions: </b>{order.specialInstructions}</p>
               </div>
