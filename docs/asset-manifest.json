@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/concrete-volume-calculator/static/css/main.9d5b29c0.chunk.css",
+    "main.js": "/concrete-volume-calculator/static/js/main.d12291c5.chunk.js",
+    "main.js.map": "/concrete-volume-calculator/static/js/main.d12291c5.chunk.js.map",
+    "runtime-main.js": "/concrete-volume-calculator/static/js/runtime-main.7ecac296.js",
+    "runtime-main.js.map": "/concrete-volume-calculator/static/js/runtime-main.7ecac296.js.map",
+    "static/css/2.4c97ca4f.chunk.css": "/concrete-volume-calculator/static/css/2.4c97ca4f.chunk.css",
+    "static/js/2.075a283a.chunk.js": "/concrete-volume-calculator/static/js/2.075a283a.chunk.js",
+    "static/js/2.075a283a.chunk.js.map": "/concrete-volume-calculator/static/js/2.075a283a.chunk.js.map",
+    "static/js/3.870ef502.chunk.js": "/concrete-volume-calculator/static/js/3.870ef502.chunk.js",
+    "static/js/3.870ef502.chunk.js.map": "/concrete-volume-calculator/static/js/3.870ef502.chunk.js.map",
+    "index.html": "/concrete-volume-calculator/index.html",
+    "static/css/2.4c97ca4f.chunk.css.map": "/concrete-volume-calculator/static/css/2.4c97ca4f.chunk.css.map",
+    "static/css/main.9d5b29c0.chunk.css.map": "/concrete-volume-calculator/static/css/main.9d5b29c0.chunk.css.map",
+    "static/js/2.075a283a.chunk.js.LICENSE.txt": "/concrete-volume-calculator/static/js/2.075a283a.chunk.js.LICENSE.txt",
+    "static/media/truck.96454da8.png": "/concrete-volume-calculator/static/media/truck.96454da8.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.7ecac296.js",
+    "static/css/2.4c97ca4f.chunk.css",
+    "static/js/2.075a283a.chunk.js",
+    "static/css/main.9d5b29c0.chunk.css",
+    "static/js/main.d12291c5.chunk.js"
+  ]
+}
