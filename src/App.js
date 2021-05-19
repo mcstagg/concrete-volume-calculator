@@ -170,6 +170,7 @@ const App = () => {
 
     <>
       <Container>
+
       <Row className="mb-2 mt-1">
         <Col>
           <img 
@@ -178,18 +179,22 @@ const App = () => {
           />
         </Col>
         <Col>
-          <h1 className="text-center">
+          <h1 className="text-center cvc">
             <u>Concrete Volume Calculator</u>
           </h1>
         </Col>
       </Row>
       
-      <div>
-        <h4 className="text-center">
-          <i>Enter Your Details Below:</i>
-        </h4>
-        <Row className="pt-1">
+      <Row className="text-center">
         <Col>
+          <h4>
+            <i>Enter Your Details Below:</i>
+          </h4>
+        </Col>
+      </Row>
+
+      <Row className="pt-1 text-center">
+        <Col className="pl-0 pr-0">
           <input 
             type="radio" 
             id="wall" 
@@ -206,7 +211,7 @@ const App = () => {
             Wall
           </label>
         </Col>
-        <Col>
+        <Col className="pl-0 pr-0">
           <input 
             type="radio" 
             id="footing" 
@@ -223,7 +228,7 @@ const App = () => {
             Footing
           </label>
         </Col>
-        <Col>
+        <Col className="pl-0 pr-0">
           <input 
             type="radio" 
             id="patio" 
@@ -240,7 +245,7 @@ const App = () => {
             Floor
           </label>
         </Col>
-        <Col>
+        <Col className="pl-0 pr-0">
           <input 
             type="radio" 
             id="patio" 
@@ -251,38 +256,19 @@ const App = () => {
             } 
           />
           <label 
-            htmlFor="sidewalk" 
+            htmlFor="patio" 
             className="pl-2"
           >
             Patio
-          </label></Col>
-        </Row>
-      </div>
+          </label>
+        </Col>
+      </Row>
 
       <div>
           <h4>New Dimension:</h4>
           <Row 
             className="mb-0 pr-2 pt-2 pb-3 block-example border border-dark text-center"
           >
-            <Col className="mb-0">
-              <Form.Group className="mb-0">
-                <Form.Label 
-                  htmlFor="width" 
-                  className="pr-2"
-                >
-                  <b>Width (in.)</b>
-                </Form.Label>
-                <Form.Control 
-                  type="text" 
-                  id="width" 
-                  placeholder="width"
-                  value={width} 
-                  onChange={
-                    e => setWidth(e.target.value)
-                  }
-                />
-              </Form.Group>
-            </Col>
             <Col className="mb-0">
               <Form.Group className="mb-0">
                 <Form.Label 
@@ -302,6 +288,25 @@ const App = () => {
                 />
               </Form.Group>
             </ Col>
+            <Col className="mb-0">
+              <Form.Group className="mb-0">
+                <Form.Label 
+                  htmlFor="width" 
+                  className="pr-2"
+                >
+                  <b>Width  (in.)</b>
+                </Form.Label>
+                <Form.Control 
+                  type="text" 
+                  id="width" 
+                  placeholder="width"
+                  value={width} 
+                  onChange={
+                    e => setWidth(e.target.value)
+                  }
+                />
+              </Form.Group>
+            </Col>
             <Col className="mb-0">
               <Form.Group className="mb-0">
                 <Form.Label 
