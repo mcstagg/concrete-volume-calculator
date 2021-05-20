@@ -5,14 +5,24 @@ import truck from './truck.png';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import VerifyModal from './VerifyModal';
 import ConfirmModal from './ConfirmModal';
-import { Row, Col, Container, Form, Button } from 'react-bootstrap';
+import { Row, Col, Container, Form, Button, Table } from 'react-bootstrap';
 
 const App = () => {
 
   // Dimension variables
-  const [width, setWidth] = useState("");
-  const [height, setHeight] = useState("");
-  const [length, setLength] = useState("");
+  const [width, setWidth] = useState(0);
+  const [widthInInches, setWidthInInches] = useState(0);
+  const [widthInFeet, setWidthInFeet] = useState(0);
+  const [height, setHeight] = useState(0);
+  const [heightInInches, setHeightInInches] = useState(0);
+  const [heightInFeet, setHeightInFeet] = useState(0);
+  const [length, setLength] = useState(0);
+  const [lengthInInches, setLengthInInches] = useState(0);
+  const [lengthInFeet, setLengthInFeet] = useState(0);
+  const [leftoverHeight, setLeftoverHeight] = useState(0);
+  const [leftoverWidth, setLeftoverWidth] = useState(0);
+  const [leftoverLength, setLeftoverLength] = useState(0);
+
   const [cubicYards, setCubicYards] = useState(0);
   const [totalCubicYards, setTotalCubicYards] = useState(0);
   const [displayCubicYards, setDisplayCubicYards] = useState(0);
@@ -41,21 +51,57 @@ const App = () => {
 
   // Dimension and display logic
   // Handles the add dimension event upon add new dimension button click
-  const addDimension = (width, height, length) => {
+  const addDimension = (heightInInches, heightInFeet, widthInInches, widthInFeet, lengthInInches, lengthInFeet) => {
 
-    let heightInInches = height * 12;
-    let lengthInInches = length * 12;
-    let cubicInches = width * heightInInches * lengthInInches;
+    let heightToInches = 0;
+    let widthToInches = 0;
+    let lengthToInches = 0;
+    let totalHeight = 0;
+    let totalWidth = 0;
+    let totalLength = 0; 
+
+    heightToInches = heightInFeet * 12;
+    widthToInches = widthInFeet * 12;
+    lengthToInches = lengthInFeet * 12;
+
+    totalHeight = parseInt(heightInInches) + parseInt(heightToInches);
+    totalWidth = parseInt(widthInInches) + parseInt(widthToInches);
+    totalLength = parseInt(lengthInInches) + parseInt(lengthToInches);
+
+    let cubicInches = totalHeight * totalWidth * totalLength;
     let inchesInYards = 46656;
-    let volume = (cubicInches / inchesInYards)
+    let volume = (cubicInches / inchesInYards);
     calculateTotalCubicYards(volume);
-    setCubicYards(Number(volume.toFixed(2))); 
+    setCubicYards(Number(volume.toFixed(2)));
+
+    totalHeight = (totalHeight / 12);
+    totalWidth = (totalWidth / 12);
+    totalLength = (totalLength / 12);
+
+    let heightFt = totalHeight.toFixed(0);
+    let widthFt = totalWidth.toFixed(0);
+    let lengthFt = totalLength.toFixed(0);
+    
+    setHeight(heightFt);
+    setWidth(widthFt);
+    setLength(lengthFt);
+
+    let heightIn = (totalHeight % 1).toFixed(2);
+    let widthIn = (totalWidth % 1).toFixed(2);
+    let lengthIn = (totalLength % 1).toFixed(2);
+
+    setLeftoverHeight(heightIn);
+    setLeftoverWidth(widthIn);
+    setLeftoverLength(lengthIn);
 
     setEntries(
       entries.concat({
-        width: width,
         height: height,
+        heightIn: leftoverHeight,
+        width: width,
+        widthIn: leftoverWidth,
         length: length,
+        lengthIn: leftoverLength,
         cubicYards: volume.toFixed(2)
       })
     );
@@ -264,70 +310,190 @@ const App = () => {
         </Col>
       </Row>
 
-      <div>
+      <Row>
+        <Col>
           <h4>New Dimension:</h4>
-          <Row 
-            className="mb-0 pr-2 pt-2 pb-3 block-example border border-dark text-center"
-          >
-            <Col className="mb-0">
-              <Form.Group className="mb-0">
+        </Col>
+      </Row>
+          
+      <Row 
+        className="pb-2 pt-1 pl-0 pr-0 block-example border border-dark text-center"
+      >
+        <Col className="mb-0">
+          <Form.Group className="mb-0">
+            <Row className="">
+              <Col>
                 <Form.Label 
                   htmlFor="height" 
-                  className="pr-2"
+                  className="mb-0"
                 >
-                  <b>Height (ft.)</b>
+                  <b>Height</b>
                 </Form.Label>
+              </Col>
+            </Row>
+            <Row className="mb-0 text-left">
+              <Col className="">
                 <Form.Control 
                   type="text" 
                   id="height" 
-                  placeholder="Height"
-                  value={height} 
+                  placeholder="feet"
+                  className=""
+                  value={heightInFeet} 
                   onChange={
-                    e => setHeight(e.target.value)
+                    e => setHeightInFeet(e.target.value)
                   } 
                 />
-              </Form.Group>
-            </ Col>
-            <Col className="mb-0">
-              <Form.Group className="mb-0">
+              </Col>
+              <Col>
+                <Form.Label 
+                  htmlFor="height" 
+                  className="mb-0 pb-0"
+                >
+                  <p className="mb-0">Feet</p>
+                </Form.Label>
+              </Col>
+            </Row>
+            <Row className="mt-0 pt-0 text-left">
+              <Col className="mt-0">
+                <Form.Control 
+                  type="text" 
+                  id="height" 
+                  placeholder="inches"
+                  className=""
+                  value={heightInInches} 
+                  onChange={
+                    e => setHeightInInches(e.target.value)
+                  } 
+                />
+              </Col>
+              <Col className="">
+                <Form.Label 
+                  htmlFor="height" 
+                  className="mb-0 pb-0"
+                >
+                  <p className="mb-0">Inches</p>
+                </Form.Label>
+              </Col>
+            </Row>
+          </Form.Group>
+        </Col>
+
+        <Col className="mb-0">
+          <Form.Group className="mb-0">
+            <Row>
+              <Col>
                 <Form.Label 
                   htmlFor="width" 
-                  className="pr-2"
+                  className="mb-0"
                 >
-                  <b>Width  (in.)</b>
+                  <b>Width</b>
                 </Form.Label>
+              </Col>
+            </Row>
+            <Row className="text-left">
+              <Col>
                 <Form.Control 
                   type="text" 
                   id="width" 
-                  placeholder="width"
-                  value={width} 
+                  className=""
+                  placeholder="feet"
+                  value={widthInFeet} 
                   onChange={
-                    e => setWidth(e.target.value)
+                    e => setWidthInFeet(e.target.value)
                   }
                 />
-              </Form.Group>
-            </Col>
-            <Col className="mb-0">
-              <Form.Group className="mb-0">
+              </Col>
+              <Col>
+                <Form.Label 
+                  htmlFor="width" 
+                  className="mb-0 pb-0"
+                >
+                  <p className="mb-0">Feet</p>
+                </Form.Label>
+              </Col>
+            </Row>
+            <Row className="text-left">
+              <Col>
+              <Form.Control 
+                type="text" 
+                id="width" 
+                className=""
+                placeholder="inches"
+                value={widthInInches} 
+                onChange={
+                  e => setWidthInInches(e.target.value)
+                }
+              />
+              </Col>
+              <Col className="">
+                <Form.Label 
+                  htmlFor="width" 
+                  className="mb-0"
+                >
+                  <p className="mb-0">Inches</p>
+                </Form.Label>
+              </Col>
+            </Row>
+          </Form.Group>
+        </Col>
+
+        <Col className="mb-0">
+          <Form.Group className="mb-0">
+            <Row>
+              <Col>
                 <Form.Label 
                   htmlFor="length" 
-                  className="pr-2"
+                  className="mb-0"
                 >
-                  <b>Length (ft.)</b>
+                  <b>Length</b>
                 </Form.Label>
+              </Col>
+            </Row>
+            <Row className="text-left">
+              <Col>
                 <Form.Control 
                   type="text" 
                   id="length" 
-                  placeholder="length"
-                  value={length} 
+                  placeholder="feet"
+                  value={lengthInFeet} 
                   onChange={
-                    e => setLength(e.target.value)
+                    e => setLengthInFeet(e.target.value)
                   }  
                 />
-              </Form.Group>
-            </ Col>
-          </Row>
-      </div>
+              </Col>
+              <Col>
+                <Form.Label 
+                  htmlFor="length" 
+                  className="mb-0 pb-0"
+                >
+                  <p className="mb-0">Feet</p>
+                </Form.Label>
+              </Col>
+            </Row>
+            <Row className="text-left">
+              <Col>
+                <Form.Control 
+                  type="text" 
+                  id="length" 
+                  placeholder="inches"
+                  value={lengthInInches} 
+                  onChange={
+                    e => setLengthInInches(e.target.value)
+                  }  
+                />
+              </Col>
+              <Col className="">
+                <Form.Label 
+                  htmlFor="length" 
+                  className="mb-0"
+                >
+                  <p className="mb-0">Inches</p>
+                </Form.Label>
+              </Col>
+            </Row>
+          </Form.Group>
+        </Col>
+      </Row>
 
       <Row className="">
         <Col>
@@ -340,7 +506,7 @@ const App = () => {
             className="float-right mt-2 mb-2"
             onClick={
               () => {
-                addDimension(width, height, length);
+                addDimension(heightInInches, heightInFeet, widthInInches, widthInFeet, lengthInInches, lengthInFeet);
               }
             }
           >
@@ -348,25 +514,43 @@ const App = () => {
           </Button>
         </Col>
       </Row>
-      <Row className="block-example border border-dark">
-        <Col className="mb-3 mt-3">
+
+      <Row className="block-example text-center">
+        <Col className="p-0">
+          <Table className="mb-0">
+          <thead>
+          <tr>
+          <th className="border border-dark">Height</th>
+          <th className="border border-dark">Width</th>
+          <th className="border border-dark">Length</th>
+          <th className="border border-dark">Cubic Yards</th>
+          </tr>
+          </thead>
           {
             entries.map(
               (entry, index) => (
-                <span key={index}>
-                  <b>{entry.width}</b> in. wide by&nbsp;
-                  <b>{entry.height}</b> ft. high by&nbsp;
-                  <b>{entry.length}</b> ft. long =&nbsp;
-                  <b>{entry.cubicYards}</b> cubic yards
-                  <br />
-                </span>
+                  <tr key={index}>
+                  <td className="pl-2 pt-1 pr-1 pb-1 border border-dark">
+                  <b>{entry.height}</b> ft. <b>{entry.heightIn}</b> in.
+                  </td>
+                  <td className="pl-2 pt-1 pr-0 pb-1 border border-dark">
+                  <b>{entry.width}</b> ft. <b>{entry.widthIn}</b> in.
+                  </td>
+                  <td className="pl-2 pt-1 pr-0 pb-1 border border-dark">
+                  <b>{entry.length}</b> ft. <b>{entry.lengthIn}</b> in.
+                  </td>
+                  <td className="p-1 border border-dark">
+                  <b>{entry.cubicYards}</b>
+                  </td>
+                  </tr>
               )
             )
           }
+          </Table>
         </Col>
       </Row>
       <Row 
-        className="pt-3 mb-3 block-example border-left border-right border-bottom border-dark"
+        className="pt-3 mb-3 block-example border-left border-bottom border-right border-dark"
       >
         <Col>
           <p><b>Total Cubic Yards:</b></p>
@@ -640,18 +824,6 @@ const App = () => {
         onCloseClick={onCloseClick}
       />
     
-      <Row className="">
-        <Col>
-          {/* <h3 className="mb-3">Your Order Has Been Confirmed!</h3> */}
-          {/* {
-            orders.map((order, index) => (
-              <div key={index}>
-                <p><b>{order.name}</b> {order.symbol}</p>
-              </div>
-            ))
-          } */}
-        </Col>
-      </Row>
       </Container>
     </>
   );
