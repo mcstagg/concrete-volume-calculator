@@ -657,7 +657,7 @@ const App = () => {
             </Col> 
             <Col>
               <Form.Label htmlFor="type">
-                <b>Type of Pour:</b>
+                <b>Pour Type:</b>
               </Form.Label>
               <Form.Control 
                 type="text" 
@@ -674,7 +674,7 @@ const App = () => {
           <Row className="mx-auto">
             <Col>
             <Form.Label htmlFor="temp">
-              <b>Temperature: (F)</b>
+              <b>Temperature:</b>
             </Form.Label>
             <Form.Control 
               as="select" 
