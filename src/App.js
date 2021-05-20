@@ -332,7 +332,7 @@ const App = () => {
               </Col>
             </Row>
             <Row className="mb-0 text-left">
-              <Col className="">
+              <Col className="mr-1">
                 <Form.Control 
                   type="text" 
                   id="height" 
@@ -354,7 +354,7 @@ const App = () => {
               </Col>
             </Row>
             <Row className="mt-0 pt-0 text-left">
-              <Col className="mt-0">
+              <Col className="mt-0 mr-1">
                 <Form.Control 
                   type="text" 
                   id="height" 
@@ -391,7 +391,7 @@ const App = () => {
               </Col>
             </Row>
             <Row className="text-left">
-              <Col>
+              <Col className="mr-1">
                 <Form.Control 
                   type="text" 
                   id="width" 
@@ -413,7 +413,7 @@ const App = () => {
               </Col>
             </Row>
             <Row className="text-left">
-              <Col>
+              <Col className="mr-1">
               <Form.Control 
                 type="text" 
                 id="width" 
@@ -450,7 +450,7 @@ const App = () => {
               </Col>
             </Row>
             <Row className="text-left">
-              <Col>
+              <Col className="mr-1">
                 <Form.Control 
                   type="text" 
                   id="length" 
@@ -471,7 +471,7 @@ const App = () => {
               </Col>
             </Row>
             <Row className="text-left">
-              <Col>
+              <Col className="mr-1">
                 <Form.Control 
                   type="text" 
                   id="length" 
