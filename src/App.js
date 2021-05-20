@@ -526,6 +526,7 @@ const App = () => {
           <th className="border border-dark">Cubic Yards</th>
           </tr>
           </thead>
+          <tbody>
           {
             entries.map(
               (entry, index) => (
@@ -546,6 +547,7 @@ const App = () => {
               )
             )
           }
+          </tbody>
           </Table>
         </Col>
       </Row>
