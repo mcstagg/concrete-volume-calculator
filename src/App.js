@@ -96,12 +96,12 @@ const App = () => {
 
     setEntries(
       entries.concat({
-        height: height,
-        heightIn: leftoverHeight,
-        width: width,
-        widthIn: leftoverWidth,
-        length: length,
-        lengthIn: leftoverLength,
+        height: heightInFeet,
+        heightIn: heightInInches,
+        width: widthInFeet,
+        widthIn: widthInInches,
+        length: lengthInFeet,
+        lengthIn: lengthInInches,
         cubicYards: volume.toFixed(2)
       })
     );
@@ -523,7 +523,7 @@ const App = () => {
           <th className="border border-dark">Height</th>
           <th className="border border-dark">Width</th>
           <th className="border border-dark">Length</th>
-          <th className="border border-dark">Cubic Yards</th>
+          <th className="border border-dark pl-0 pr-0">Cubic Yards</th>
           </tr>
           </thead>
           <tbody>
@@ -531,16 +531,16 @@ const App = () => {
             entries.map(
               (entry, index) => (
                   <tr key={index}>
-                  <td className="pl-2 pt-1 pr-1 pb-1 border border-dark">
-                  <b>{entry.height}</b> ft. <b>{entry.heightIn}</b> in.
+                  <td className="pl-1 pt-1 pr-1 pb-1 border border-dark">
+                  <b>{entry.height}</b>ft <b>{entry.heightIn}</b>in
                   </td>
-                  <td className="pl-2 pt-1 pr-0 pb-1 border border-dark">
-                  <b>{entry.width}</b> ft. <b>{entry.widthIn}</b> in.
+                  <td className="pl-1 pt-1 pr-0 pb-1 border border-dark">
+                  <b>{entry.width}</b>ft <b>{entry.widthIn}</b>in
                   </td>
-                  <td className="pl-2 pt-1 pr-0 pb-1 border border-dark">
-                  <b>{entry.length}</b> ft. <b>{entry.lengthIn}</b> in.
+                  <td className="pl-0 pt-1 pr-0 pb-1 border border-dark">
+                  <b>{entry.length}</b>ft <b>{entry.lengthIn}</b>in
                   </td>
-                  <td className="p-1 border border-dark">
+                  <td className="pl-0 pt-1 pr-0 border border-dark">
                   <b>{entry.cubicYards}</b>
                   </td>
                   </tr>
@@ -554,10 +554,10 @@ const App = () => {
       <Row 
         className="pt-3 mb-3 block-example border-left border-bottom border-right border-dark"
       >
-        <Col>
+        <Col className="pl-2 pt-0 pr-0 pb-0">
           <p><b>Total Cubic Yards:</b></p>
         </Col>
-        <Col>
+        <Col className="">
           <p className="float-right">
           <b>
             {
