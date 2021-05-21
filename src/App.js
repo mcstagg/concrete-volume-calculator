@@ -234,7 +234,7 @@ const App = () => {
       <Row className="p-0 text-center">
         <Col className="pl-2 pr-2">
           <h4 className="p-0">
-            <i>Dimensions for Takeoff:</i>
+            <i>Details for Takeoff:</i>
           </h4>
         </Col>
       </Row>
@@ -331,8 +331,8 @@ const App = () => {
                 </Form.Label>
               </Col>
             </Row>
-            <Row className="mb-0 text-left">
-              <Col className="mr-1">
+            <Row className="mb-0 text-center">
+              <Col className="">
                 <Form.Control 
                   type="text" 
                   id="height" 
@@ -344,7 +344,7 @@ const App = () => {
                   } 
                 />
               </Col>
-              <Col>
+              <Col className="">
                 <Form.Label 
                   htmlFor="height" 
                   className="mb-2 pb-0"
@@ -353,8 +353,8 @@ const App = () => {
                 </Form.Label>
               </Col>
             </Row>
-            <Row className="mt-0 pt-0 text-left">
-              <Col className="mt-0 mr-1">
+            <Row className="mt-0 pt-0 text-center">
+              <Col className="mt-0">
                 <Form.Control 
                   type="text" 
                   id="height" 
@@ -390,8 +390,8 @@ const App = () => {
                 </Form.Label>
               </Col>
             </Row>
-            <Row className="text-left">
-              <Col className="mr-1">
+            <Row className="text-center">
+              <Col className="">
                 <Form.Control 
                   type="text" 
                   id="width" 
@@ -412,8 +412,8 @@ const App = () => {
                 </Form.Label>
               </Col>
             </Row>
-            <Row className="text-left">
-              <Col className="mr-1">
+            <Row className="text-center">
+              <Col className="">
               <Form.Control 
                 type="text" 
                 id="width" 
@@ -449,8 +449,8 @@ const App = () => {
                 </Form.Label>
               </Col>
             </Row>
-            <Row className="text-left">
-              <Col className="mr-1">
+            <Row className="text-center">
+              <Col className="">
                 <Form.Control 
                   type="text" 
                   id="length" 
@@ -470,8 +470,8 @@ const App = () => {
                 </Form.Label>
               </Col>
             </Row>
-            <Row className="text-left">
-              <Col className="mr-1">
+            <Row className="text-center">
+              <Col className="">
                 <Form.Control 
                   type="text" 
                   id="length" 
@@ -585,13 +585,14 @@ const App = () => {
           <Col>
           <Row className="mx-auto">
             <Col className="mb-0">
-              <Form.Label htmlFor="date">
+              <Form.Label className="mb-0">
                 <b>Order Date:</b>
               </Form.Label>
               <Form.Control 
                 type="date" 
                 id="date" 
                 name="dates" 
+                className="mb-2"
                 placeholder="MM/DD/YY"
                 onChange={
                   e => setOrderDate(e.target.value)
@@ -599,13 +600,14 @@ const App = () => {
               />
             </Col>
             <Col> 
-              <Form.Label htmlFor="pourDate">
+              <Form.Label className="mb-0">
                 <b>Date of Pour:</b>
               </Form.Label>
               <Form.Control 
                 type="date" 
                 id="pour" 
                 name="pourDate" 
+                className="mb-2"
                 placeholder="MM/DD/YY"
                 onChange={
                   e => setDateOfPour(e.target.value)
@@ -615,13 +617,14 @@ const App = () => {
           </Row>
           <Row className="mx-auto">
             <Col>
-              <Form.Label htmlFor="customer">
+              <Form.Label className="mb-0">
                 <b>Customer:</b>
               </Form.Label>
               <Form.Control 
                 type="text" 
                 id="customer" 
                 name="customers" 
+                className="mb-2"
                 placeholder="customer"
                 onChange={
                   e => setCustomer(e.target.value)
@@ -629,13 +632,14 @@ const App = () => {
               />
             </Col>
             <Col> 
-              <Form.Label htmlFor="timeOfPour">
+              <Form.Label className="mb-0">
                 <b>Time of Pour:</b>
               </Form.Label>
               <Form.Control 
                 type="time" 
                 id="time" 
                 name="timeOfPour" 
+                className="mb-2"
                 placeholder="12:00pm"
                 onChange={
                   e => setTimeOfPour(e.target.value)
@@ -645,13 +649,14 @@ const App = () => {
           </Row>
           <Row className="mx-auto">
           <Col>
-              <Form.Label htmlFor="yards">
+              <Form.Label className="mb-0">
                 <b>Cubic Yards:</b>
               </Form.Label>
               <Form.Control 
                 type="text" 
                 id="yards" 
-                name="cubicyards" 
+                name="cubicyards"
+                className="mb-2" 
                 placeholder="0.00"
                 value={displayCubicYards}
                 onChange={
@@ -660,7 +665,7 @@ const App = () => {
               />
             </Col> 
             <Col>
-              <Form.Label htmlFor="type">
+              <Form.Label className="mb-0">
                 <b>Pour Type:</b>
               </Form.Label>
               <Form.Control 
@@ -668,6 +673,7 @@ const App = () => {
                 id="type" 
                 name="types"
                 value={typeOfPour} 
+                className="mb-2"
                 placeholder="type of pour"
                 onChange={
                   e => setTypeOfPour(e.target.value)
@@ -677,13 +683,14 @@ const App = () => {
           </Row>
           <Row className="mx-auto">
             <Col>
-            <Form.Label htmlFor="temp">
+            <Form.Label className="mb-0">
               <b>Temp:</b>
             </Form.Label>
             <Form.Control 
               as="select" 
               id="temp" 
-              name="temperature" 
+              name="temperature"
+              className="mb-2" 
               placeholder="temp"
               onInput={
                 e => setTemperature(e.target.value)
@@ -697,13 +704,14 @@ const App = () => {
             </Form.Control>
             </Col>
             <Col>
-              <Form.Label htmlFor="slump">
+              <Form.Label className="mb-0">
                 <b>Slump:</b>
               </Form.Label>
               <Form.Control 
                 as="select" 
                 id="slump" 
-                name="slumpin" 
+                name="slumpin"
+                className="mb-2" 
                 placeholder="slump"
                 onChange={
                   e => setSlump(e.target.value)
@@ -719,13 +727,14 @@ const App = () => {
           </Row> 
           <Row className="mx-auto">
             <Col>
-              <Form.Label htmlFor="fiber">
+              <Form.Label className="mb-0">
                 <b>Fiber Mesh:</b>
               </Form.Label>
               <Form.Control 
                 as="select" 
                 id="fiber" 
-                name="fibermesh" 
+                name="fibermesh"
+                className="mb-2" 
                 placeholder="fiber mesh"
                 onChange={
                   e => setFiberMesh(e.target.value)
@@ -736,12 +745,13 @@ const App = () => {
               </Form.Control>
             </Col>
             <Col>
-              <Form.Label htmlFor="chloride">
+              <Form.Label className="mb-0">
                 <b>Chloride:</b>
               </Form.Label>
               <Form.Control
                 as="select"
-                id="chloride" 
+                id="chloride"
+                className="mb-2" 
                 name="chloridecontent" 
                 placeholder="chloride"
                 onChange={
@@ -757,7 +767,7 @@ const App = () => {
           </Row>
           <Row className="mx-auto">
             <Col>    
-              <Form.Label htmlFor="address">
+              <Form.Label className="mb-0">
                 <b>Job Site Address:</b>
               </Form.Label>
               <Form.Control 
@@ -766,6 +776,7 @@ const App = () => {
                 type="text" 
                 id="address" 
                 name="jobAddress" 
+                className="mb-2"
                 placeholder="address"
                 onChange={
                   e => setAddress(e.target.value)
@@ -775,7 +786,7 @@ const App = () => {
           </Row> 
           <Row className="mx-auto">
             <Col>   
-              <Form.Label htmlFor="special">
+              <Form.Label className="mb-0">
                 <b>Special Instructions:</b>
               </Form.Label>
               <Form.Control 
@@ -784,6 +795,7 @@ const App = () => {
                 type="text" 
                 id="special" 
                 name="specialinstructions" 
+                className="mb-2"
                 placeholder="special instructions"
                 onChange={
                   e => setSpecialInstructions(e.target.value)
