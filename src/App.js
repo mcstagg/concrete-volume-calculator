@@ -225,7 +225,7 @@ const App = () => {
           />
         </Col>
         <Col>
-          <h1 className="text-center cvc">
+          <h1 className="text-center">
             <u>Concrete Volume Calculator</u>
           </h1>
         </Col>
@@ -239,7 +239,7 @@ const App = () => {
         </Col>
       </Row>
 
-      <Row className="pt-1 text-center">
+      <Row className="text-center">
         <Col className="pl-0 pr-0">
           <input 
             type="radio" 
@@ -579,9 +579,10 @@ const App = () => {
         </Col>
       </Row>
 
-      <Row className="ml-1 mr-1 pt-3 pb-1 mb-3 block-example border border-dark">
+      <Row className="ml-1 mr-1 pt-2 pb-1 mb-3 block-example border border-dark">
         <Col className="p-0">
-          <Form.Group>
+
+          <Form.Group className="mb-0">
           <Col>
           <Row className="mx-auto">
             <Col className="mb-0">
@@ -674,7 +675,7 @@ const App = () => {
                 name="types"
                 value={typeOfPour} 
                 className="mb-2"
-                placeholder="type of pour"
+                placeholder="pour type"
                 onChange={
                   e => setTypeOfPour(e.target.value)
                 }
@@ -795,18 +796,20 @@ const App = () => {
                 type="text" 
                 id="special" 
                 name="specialinstructions" 
-                className="mb-2"
+                className=""
                 placeholder="special instructions"
                 onChange={
                   e => setSpecialInstructions(e.target.value)
                 } 
               />
             </Col> 
-          </Row>  
+          </Row> 
+          <Row>
+            <Col className="text-center">
             <Button 
               variant="primary" 
               size="m" 
-              className="float-right mb-3 mt-3 mr-3 pl-5 pr-5"
+              className="mb-2 mt-2 pl-5 pr-5"
               onClick={
                 () => {
                   addOrder();
@@ -816,6 +819,9 @@ const App = () => {
             >
               Place Your Order
             </Button>
+            </Col>
+          </Row>
+
           </Col>
           </Form.Group>
         </Col>
