@@ -215,7 +215,7 @@ const App = () => {
   return (
 
     <>
-      <Container>
+      <Container xs={2}>
 
       <Row className="mb-2 mt-1">
         <Col>
@@ -231,10 +231,10 @@ const App = () => {
         </Col>
       </Row>
       
-      <Row className="text-center">
-        <Col>
-          <h4>
-            <i>Enter Your Details Below:</i>
+      <Row className="p-0 text-center">
+        <Col className="pl-2 pr-2">
+          <h4 className="p-0">
+            <i>Dimensions for Takeoff:</i>
           </h4>
         </Col>
       </Row>
@@ -311,13 +311,13 @@ const App = () => {
       </Row>
 
       <Row>
-        <Col>
-          <h4>New Dimension:</h4>
+        <Col className="pl-4">
+          <h4>Add New Dimension:</h4>
         </Col>
       </Row>
           
       <Row 
-        className="pb-2 pt-1 pl-0 pr-0 block-example border border-dark text-center"
+        className="pb-2 pt-1 pl-0 pr-0 mr-1 ml-1 block-example border border-dark text-center"
       >
         <Col className="mb-0">
           <Form.Group className="mb-0">
@@ -337,7 +337,7 @@ const App = () => {
                   type="text" 
                   id="height" 
                   placeholder="feet"
-                  className=""
+                  className="mb-0"
                   value={heightInFeet} 
                   onChange={
                     e => setHeightInFeet(e.target.value)
@@ -347,7 +347,7 @@ const App = () => {
               <Col>
                 <Form.Label 
                   htmlFor="height" 
-                  className="mb-0 pb-0"
+                  className="mb-2 pb-0"
                 >
                   <p className="mb-0">Feet</p>
                 </Form.Label>
@@ -406,7 +406,7 @@ const App = () => {
               <Col>
                 <Form.Label 
                   htmlFor="width" 
-                  className="mb-0 pb-0"
+                  className="mb-2 pb-0"
                 >
                   <p className="mb-0">Feet</p>
                 </Form.Label>
@@ -464,7 +464,7 @@ const App = () => {
               <Col>
                 <Form.Label 
                   htmlFor="length" 
-                  className="mb-0 pb-0"
+                  className="mb-2 pb-0"
                 >
                   <p className="mb-0">Feet</p>
                 </Form.Label>
@@ -496,10 +496,13 @@ const App = () => {
       </Row>
 
       <Row className="">
-        <Col>
-          <h4 className="mt-3">Entries:</h4>
+        <Col className="takeoff">
+          <h4 className="mt-5">Takeoff:</h4>
         </Col>
-        <Col className="pr-0">
+        <Col 
+          className="enter-new"
+          xs={7}  
+        >
           <Button 
             variant="primary" 
             size="m" 
@@ -515,14 +518,14 @@ const App = () => {
         </Col>
       </Row>
 
-      <Row className="block-example text-center">
+      <Row className="ml-1 mr-1 block-example text-center">
         <Col className="p-0">
           <Table className="mb-0">
           <thead>
           <tr>
-          <th className="border border-dark">Height</th>
-          <th className="border border-dark">Width</th>
-          <th className="border border-dark">Length</th>
+          <th className="pl-1 pr-1 border border-dark">Height</th>
+          <th className="pl-1 pr-1 border border-dark">Width</th>
+          <th className="pl-1 pr-1 border border-dark">Length</th>
           <th className="border border-dark pl-0 pr-0">Cubic Yards</th>
           </tr>
           </thead>
@@ -551,10 +554,11 @@ const App = () => {
           </Table>
         </Col>
       </Row>
+
       <Row 
-        className="pt-3 mb-3 block-example border-left border-bottom border-right border-dark"
+        className="ml-1 mr-1 pt-3 mb-3 block-example border-left border-bottom border-right border-dark"
       >
-        <Col className="pl-2 pt-0 pr-0 pb-0">
+        <Col className="pl-2 pt-0 pr-0 pb-0" xs={8}>
           <p><b>Total Cubic Yards:</b></p>
         </Col>
         <Col className="">
@@ -571,12 +575,12 @@ const App = () => {
       <div className="">
       <Row>
         <Col>
-          <h4 className="mb-2">Order Form:</h4>
+          <h4 className="mb-2 pl-2">Order Form:</h4>
         </Col>
       </Row>
 
-      <Row className="pt-3 pb-1 mb-3 block-example border border-dark">
-        <Col>
+      <Row className="ml-1 mr-1 pt-3 pb-1 mb-3 block-example border border-dark">
+        <Col className="p-0">
           <Form.Group>
           <Col>
           <Row className="mx-auto">
@@ -674,7 +678,7 @@ const App = () => {
           <Row className="mx-auto">
             <Col>
             <Form.Label htmlFor="temp">
-              <b>Temperature:</b>
+              <b>Temp:</b>
             </Form.Label>
             <Form.Control 
               as="select" 
