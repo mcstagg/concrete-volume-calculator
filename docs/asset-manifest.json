@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/concrete-volume-calculator/static/css/main.5d20f932.chunk.css",
-    "main.js": "/concrete-volume-calculator/static/js/main.eae5ad5f.chunk.js",
-    "main.js.map": "/concrete-volume-calculator/static/js/main.eae5ad5f.chunk.js.map",
+    "main.css": "/concrete-volume-calculator/static/css/main.9b214080.chunk.css",
+    "main.js": "/concrete-volume-calculator/static/js/main.8f0edf4b.chunk.js",
+    "main.js.map": "/concrete-volume-calculator/static/js/main.8f0edf4b.chunk.js.map",
     "runtime-main.js": "/concrete-volume-calculator/static/js/runtime-main.76ca9393.js",
     "runtime-main.js.map": "/concrete-volume-calculator/static/js/runtime-main.76ca9393.js.map",
     "static/css/2.4c97ca4f.chunk.css": "/concrete-volume-calculator/static/css/2.4c97ca4f.chunk.css",
@@ -12,7 +12,7 @@
     "static/js/3.9265ca11.chunk.js.map": "/concrete-volume-calculator/static/js/3.9265ca11.chunk.js.map",
     "index.html": "/concrete-volume-calculator/index.html",
     "static/css/2.4c97ca4f.chunk.css.map": "/concrete-volume-calculator/static/css/2.4c97ca4f.chunk.css.map",
-    "static/css/main.5d20f932.chunk.css.map": "/concrete-volume-calculator/static/css/main.5d20f932.chunk.css.map",
+    "static/css/main.9b214080.chunk.css.map": "/concrete-volume-calculator/static/css/main.9b214080.chunk.css.map",
     "static/js/2.ea382806.chunk.js.LICENSE.txt": "/concrete-volume-calculator/static/js/2.ea382806.chunk.js.LICENSE.txt",
     "static/media/truck.96454da8.png": "/concrete-volume-calculator/static/media/truck.96454da8.png"
   },
@@ -20,7 +20,7 @@
     "static/js/runtime-main.76ca9393.js",
     "static/css/2.4c97ca4f.chunk.css",
     "static/js/2.ea382806.chunk.js",
-    "static/css/main.5d20f932.chunk.css",
-    "static/js/main.eae5ad5f.chunk.js"
+    "static/css/main.9b214080.chunk.css",
+    "static/js/main.8f0edf4b.chunk.js"
   ]
 }
